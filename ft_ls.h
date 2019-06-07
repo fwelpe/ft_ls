@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 19:20:58 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/07 20:34:00 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ typedef struct 		s_date
 
 int					take_dir(char *argv, t_flags *flag);
 int					take_flags(char *argv, t_flags *flag);
-int					find_flag(t_flags *flag, char *argv);
-
+int					find_flags(t_flags *flag, char *arg);
 
 int					write_info(char *direct, t_flags *flag);
 t_ls				*write_name(DIR *dir, char *direct);
@@ -96,7 +95,6 @@ t_date				*crt_date(t_date *head);
 int					sort_string(t_ls *ls, t_flags *flag, t_access *access);
 t_ls				*rm_dotf(t_ls *ls);
 int					ascii_sort(t_ls *ls, int order);
-void				swap_name(char **str, char **head);
 int					take_stime(t_ls *ls);
 int					time_sort(t_ls *ls, int order);
 int					sort(t_date *date, t_ls *ls, int order);

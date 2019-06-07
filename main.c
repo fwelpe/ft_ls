@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 17:09:24 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/07 20:29:33 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int argc, char ** argv)
 	{
 		if (argv[i][0] == '-')
 		{
-			find_flag(flag, argv[i]);
+			find_flags(flag, argv[i]);
 			i++;
 		}
 		if (argv[i])
@@ -57,33 +57,26 @@ int		take_dir(char *argv, t_flags *flag) //TODO: count numb of directories
 	return (1);
 }
 
-int		find_flag(t_flags *flag, char *argv)
+int		find_flags(t_flags *flag, char *arg)
 {
 	int		i;
-	int		j;
-	char tmp[5] = {'l', 'a', 'r', 'R', 't'};
 
 	i = 1;
-	while (argv[i])
+	while (arg[i])
 	{
-		j = 0;
-		if (argv[i] != 'l' && argv[i] != 'a' && argv[i] != 'r'
-			&& argv[i] != 'R' && argv[i] != 't')
-			return(0);
-		while (tmp[j])
-		{
-			if (argv[i] == tmp[j])
-			{
-				j == 0 ? (flag->l = 1) : 0;
-				j == 1 ? (flag->a = 1) : 0;
-				j == 2 ? (flag->r = 1) : 0;
-				j == 3 ? (flag->R = 1) : 0;
-				j == 4 ? (flag->t = 1) : 0;
-			}
-			j++;
-		}
+		if (arg[i] == 'l')
+			flag->l = 1;
+		else if (arg[i] == 'R')
+			flag->R = 1;
+		else if (arg[i] == 'a')
+			flag->a = 1;
+		else if (arg[i] == 'r')
+			flag->r = 1;
+		else if (arg[i] == 't')
+			flag->t = 1;
+		else
+			return (0);
 		i++;
 	}
 	return (1);
 }
-
