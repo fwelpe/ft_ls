@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 17:04:23 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 13:41:04 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/07 16:37:40 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(int argc, char **argv)
 {
-	t_ls		s;
+	// t_ls		s;
 
 	t_dir_data	*dir_data;
 	t_dir_data	*head;
@@ -28,11 +28,11 @@ int		main(int argc, char **argv)
 	// ft_bzero(dir_data->info, sizeof(t_info));
 
 	// поиск флага, вывод ошибки при неправильном флаге
-	i = take_flag(flag, argv);
+	i = take_flag(&flag, argv);
 	if (argv[i] == NULL)
 		dir_data->info->dir = ft_strdup(".");
 	else
-		flag->dir_count = argc - i;
+		flag.dir_count = argc - i;
 	while (argv[i])
 	{
 		dir_data->info->dir = ft_strdup(argv[i]);
@@ -43,6 +43,5 @@ int		main(int argc, char **argv)
 			dir_data = dir_data->next;
 		}
 	}
-	take_info(head, flag);
 	return (0);
 }
