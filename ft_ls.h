@@ -5,58 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/05 17:04:44 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/06 16:24:01 by thaley           ###   ########.fr       */
+/*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
+/*   Updated: 2019/06/07 17:09:32 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
-#include "libft/libft.h"
-#include <dirent.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <sys/dir.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <uuid/uuid.h>
-#include <time.h>
-#include <grp.h>
-#include <pwd.h>
+# include "libft/libft.h"
+# include <unistd.h> //write | readlink
+# include <dirent.h> //opendir | readdir | closedir
+# include <sys/types.h> // structs
+# include <sys/dir.h> //struct dirent
+# include <sys/stat.h> //stat | lstat
+# include <grp.h> //getgrgid
+# include <uuid/uuid.h> //getgrgid | getpwuid
+# include <sys/xattr.h> //listxattr | getxattr
+# include <time.h> //time | ctime
+# include <stdlib.h> //malloc | free | exit
+# include <stdio.h> //perror | strerror
+# include <pwd.h> 
 
-typedef struct			s_info
+typedef struct		s_ls
 {
-	char				*path;
-	char				*dir;
-	int					type;
-}						t_info;
+	char			*name;
+	char			*print_name;
+	char			*m_time;
+	char			*sort_time;
+	char			*user_name;
+	char			*group_name;
+	char			*acess;
+	int				size;
+	int				link;
+	int				uid;
+	int				count;
+	long long int	block;
+	void			*data;
+	struct s_ls		*next;
+}					t_ls;
 
-typedef struct			s_dir_data
+typedef struct		s_flags
 {
-	t_info				*info;
-	struct s_dir_data	*next;
-}				t_dir_data;
+	int				l;
+	int				a;
+	int				r;
+	int				R;
+	int				t;
+}					t_flags;
 
-typedef struct			s_flag
+typedef struct 		s_access
 {
-	int					l;
-	int					a;
-	int					t;
-	int					r;
-	int					R;
-	int					dir_count;
-	int					illegal;
-}						t_flag;
+	char			*user;
+	char			*group;
+	char			*other;
+	char			*type;
+	struct s_access	*next;
+}					t_access;
 
-int						take_flag(t_flag *flag, char **argv);
-t_flag					*write_flag(t_flag *flag, char *argv);
-char					*write_dname(char *argv);
-void					*take_info(t_dir_data *data, t_flag *flag);
+typedef struct 		s_date
+{
+	int				year;
+	int				mnth;
+	int				day;
+	int				week;
+	int				hour;
+	int				min;
+	int				sek;
+	struct s_date	*next;
+}					t_date;
 
-t_info					*crt_info(void);
-t_dir_data				*crt_dir(t_dir_data *head);
 
+int					take_dir(char *argv, t_flags *flag);
+int					take_flags(char *argv, t_flags *flag);
+int					find_flag(t_flags *flag, char *argv);
+
+
+int					write_info(char *direct, t_flags *flag);
+t_ls				*write_name(DIR *dir, char *direct);
+int					all_info(t_ls *ls);
+int					take_rights(t_ls *ls, t_access *access);
+char				*take_chmod(char *access, int num);
+void				user_info(t_ls *ls);
+
+t_flags				*creat_flag();
+t_ls				*add_list(t_ls *head);
+t_access			*creat_access(t_access *head);
+t_date				*crt_date(t_date *head);
+
+int					sort_string(t_ls *ls, t_flags *flag, t_access *access);
+t_ls				*rm_dotf(t_ls *ls);
+int					ascii_sort(t_ls *ls, int order);
+int					take_stime(t_ls *ls);
+int					time_sort(t_ls *ls, int order);
+int					sort(t_date *date, t_ls *ls, int order);
+int					ft_datecmp(t_date *date, t_date *next);
+
+t_date				*mod_time(t_ls *ls);
+int					take_week(char *sort_time);
+int					take_month(char *sort_time);
+int					take_other(t_ls *ls, t_date *date);
+
+char				*ft_unitoa(unsigned short n);
+
+int					print_ls(t_ls *ls, t_flags *flag, t_access *access, int blocks);
 
 #endif
