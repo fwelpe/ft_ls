@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 17:11:31 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/07 19:35:39 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,23 +109,59 @@ int		ascii_sort(t_ls *ls, int order)
 	return (0);
 }
 
+int		test_time_sort(t_ls *ls)
+{
+	char		*tmp;
+	long int	temp;
+	t_ls		*head;
+
+	tmp = NULL;
+	if (ls == NULL)
+		return (1);
+	head = ls;
+	while (ls)
+	{
+		if (ls->sort_time > head->sort_time)
+		{
+			tmp = head->print_name;
+			head->print_name = ls->print_name;
+			ls->print_name = tmp;
+			tmp = head->name;
+			head->name = ls->name;
+			ls->name = tmp;
+			temp = head->sort_time;
+			head->sort_time = ls->sort_time;
+			ls->sort_time = temp;
+		}
+		ls = ls->next;
+		if (ls == NULL)
+		{
+			if (test_time_sort(head->next))
+				return (1);
+		}
+	}
+	return (0);
+}
+
 int		time_sort(t_ls *ls, int order)
 {
 	struct stat	buf;
 	t_date		*date;
 	t_ls		*head;
+	long int	ttime;
 
 	date = NULL;
 	head = ls;
 	while (ls)
 	{
 		stat(ls->name, &buf);
-		ls->sort_time = ft_strdup(ctime(&buf.st_mtime));
+		ls->sort_time = buf.st_mtime;
 		ls = ls->next;
 	}
 	ls = head;
-	date = mod_time(ls);
-	sort(date, ls, order);
+	// date = mod_time(ls);
+	// sort(date, ls, order);
+	test_time_sort(ls);
 	return (0);
 }
 
@@ -216,15 +252,9 @@ int		take_stime(t_ls *ls)
 	while (ls)
 	{
 		stat(ls->name, &buf);
-		ls->sort_time = ft_strdup(ctime(&buf.st_mtime));
-		printf("%s\n", ls->sort_time);
+		ls->sort_time = buf.st_mtime;
 		ls = ls->next;
 	}
 	ls = head;
-	while (ls)
-	{
-		i = ft_strlen(ls->sort_time);
-
-	}
 	return (0);
 }

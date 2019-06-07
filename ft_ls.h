@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 17:09:32 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/07 19:20:58 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_ls
 	char			*name;
 	char			*print_name;
 	char			*m_time;
-	char			*sort_time;
+	long int		sort_time;
 	char			*user_name;
 	char			*group_name;
 	char			*acess;
@@ -96,6 +96,7 @@ t_date				*crt_date(t_date *head);
 int					sort_string(t_ls *ls, t_flags *flag, t_access *access);
 t_ls				*rm_dotf(t_ls *ls);
 int					ascii_sort(t_ls *ls, int order);
+void				swap_name(char **str, char **head);
 int					take_stime(t_ls *ls);
 int					time_sort(t_ls *ls, int order);
 int					sort(t_date *date, t_ls *ls, int order);
