@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 12:04:23 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 12:12:17 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int		sort_string(t_ls *ls, t_flags *flag, t_access *access)
 	{
 		time_sort(ls, 1);
 	}
-	// else if (flag->r)
-	// 	ascii_sort(ls, 2);
-	// else
-	// 	ascii_sort(ls, 1);
+	else if (flag->r)
+		ascii_sort(ls, 2);
+	else
+		ascii_sort(ls, 1);
 	// if (flag->t && flag->r)
 	// 	time_sort(ls, 2);
 	// if (flag->t)
@@ -114,6 +114,8 @@ int		test_time_sort(t_ls *ls)
 	char		*tmp;
 	long int	temp;
 	t_ls		*head;
+	int			s_time;
+	int			s_letter;
 
 	tmp = NULL;
 	if (ls == NULL)
@@ -121,7 +123,9 @@ int		test_time_sort(t_ls *ls)
 	head = ls;
 	while (ls)
 	{
-		if (ls->sort_time > head->sort_time)
+		s_time = (ls->sort_time - head->sort_time);
+		s_letter = ft_strcmp(ls->print_name, head->print_name);
+		if (s_time > 0 || (s_time == 0 && s_letter < 0))
 		{
 			tmp = head->print_name;
 			head->print_name = ls->print_name;
@@ -156,89 +160,11 @@ int		time_sort(t_ls *ls, int order)
 	{
 		stat(ls->name, &buf);
 		ls->sort_time = buf.st_mtime;
-		printf("%s  ==  %ld\n", ls->name, ls->sort_time);
 		ls = ls->next;
 	}
 	ls = head;
 	test_time_sort(ls);
 	return (0);
-}
-
-int		sort(t_date *date, t_ls *ls, int order)
-{
-	t_ls	*head;
-	t_date	*h;
-	t_date	*temp;
-	t_date	*tdate;
-	char	*tmp;
-	int		s_time;
-	int		s_letter;
-
-	i = 0;
-	head = ls;
-	h = date;
-	tmp = NULL;
-	temp = NULL;
-	tdate = NULL;
-	if (date == NULL || ls == NULL)
-		return (1);
-	while (date && ls)
-	{
-		i = ft_datecmp(date, h);
-		order == 1 ? (i = -1 * i) : (i = i * 1);
-		if (i > 0)
-		{
-			tmp = head->print_name;
-			head->print_name = ls->print_name;
-			ls->print_name = tmp;
-			tmp = head->name;
-			head->name = ls->name;
-			ls->name = tmp;
-			tdate = date->next;
-			h->next = tdate;
-			date->next = h;
-		}
-		ls = ls->next;
-		date = date->next;
-		if (date == NULL || ls == NULL)
-		{
-			if (sort(h->next, head->next, order))
-				return (1);
-		}
-	}
-	return (0);
-}
-
-int		ft_datecmp(t_date *date, t_date *next)
-{
-	if (date->year == next->year)
-	{
-		if (date->mnth == next->mnth)
-		{
-			if (date->week == next->week)
-			{
-				if (date->day == next->day)
-				{
-					if (date->hour == next->hour)
-					{
-						if (date->min == next->min)
-							return (date->sek - next->sek);
-						else
-							return (date->min - next->min);
-					}
-					else
-						return (date->hour - next->hour);
-				}
-				else
-					return (date->day - next->day);
-			}
-			else
-				return (date->week - next->week);
-		}
-		else
-			return (date->mnth - next->mnth);
-	}
-	return (date->year - next->year);
 }
 
 int		take_stime(t_ls *ls)
