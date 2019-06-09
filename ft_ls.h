@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 15:04:22 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 16:00:09 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_ls				*add_list(t_ls *head);
 
 int					sort_string(t_ls *ls, t_flags *flag);
 t_ls				*rm_dotf(t_ls *ls);
-int					ascii_sort(t_ls *ls, int order);
+int					ascii_sort(t_ls **ls, int order);
 int					time_sort(t_ls *ls, int order);
 
 int					take_week(char *sort_time);
