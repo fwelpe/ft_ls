@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/04/03 15:09:43 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 12:12:55 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_flags	*creat_flag()
+t_flags	*create_flag()
 {
 	t_flags	*flag;
 

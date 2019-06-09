@@ -6,43 +6,13 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 20:29:33 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 12:49:13 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-// Seg time sort, dont work -r flag!!
-
-int		main(int argc, char ** argv)
-{
-	int		i;
-	int		count;
-	t_flags	*flag;
-
-	i = 1;
-	count = 0;
-	flag = creat_flag();
-	while (argv[i])
-	{
-		if (argv[i][0] == '-')
-		{
-			find_flags(flag, argv[i]);
-			i++;
-		}
-		if (argv[i])
-		{
-			take_dir(argv[i], flag);
-			i++;
-			count++;
-		}
-	}
-	if (!count || argc == 1)
-		take_dir(".", flag);
-	return (0);
-}
-
-int		take_dir(char *argv, t_flags *flag) //TODO: count numb of directories
+int		take_dir(char *argv, t_flags *flag)
 {
 	char	*direct;
 
@@ -57,7 +27,17 @@ int		take_dir(char *argv, t_flags *flag) //TODO: count numb of directories
 	return (1);
 }
 
-int		find_flags(t_flags *flag, char *arg)
+void	erroring1(char msg)
+{
+	ft_putstr_fd("ls: illegal option -- ", 2);
+	ft_putchar_fd(msg, 2);
+	ft_putendl_fd(
+	"\nusage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]",
+	2);
+	exit(1);
+}
+
+int		find_validate_flags(t_flags *flag, char *arg)
 {
 	int		i;
 
@@ -75,8 +55,37 @@ int		find_flags(t_flags *flag, char *arg)
 		else if (arg[i] == 't')
 			flag->t = 1;
 		else
-			return (0);
+			erroring1(arg[i]);
 		i++;
 	}
 	return (1);
+}
+
+int		main(int argc, char **argv)
+{
+	int		i;
+	int		count;
+	t_flags	*flag;
+	char	wrong_flag[3];
+
+	i = 1;
+	count = 0;
+	flag = create_flag();
+	while (argv[i])
+	{
+		if (argv[i][0] == '-')
+		{
+			find_validate_flags(flag, argv[i]);
+			i++;
+		}
+		if (argv[i])
+		{
+			take_dir(argv[i], flag);
+			i++;
+			count++;
+		}
+	}
+	if (!count || argc == 1)
+		take_dir(".", flag);
+	return (0);
 }

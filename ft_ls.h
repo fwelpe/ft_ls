@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 20:34:00 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 12:39:01 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct 		s_date
 
 int					take_dir(char *argv, t_flags *flag);
 int					take_flags(char *argv, t_flags *flag);
-int					find_flags(t_flags *flag, char *arg);
+int					find_validate_flags(t_flags *flag, char *arg);
 
 int					write_info(char *direct, t_flags *flag);
 t_ls				*write_name(DIR *dir, char *direct);
@@ -87,7 +87,7 @@ int					take_rights(t_ls *ls, t_access *access);
 char				*take_chmod(char *access, int num);
 void				user_info(t_ls *ls);
 
-t_flags				*creat_flag();
+t_flags				*create_flag();
 t_ls				*add_list(t_ls *head);
 t_access			*creat_access(t_access *head);
 t_date				*crt_date(t_date *head);
