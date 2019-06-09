@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 16:50:18 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 17:44:37 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ int		ascii_sort(t_ls **ls_head, int order)
 		next = curr->next;
 		if (next && ft_strcmp(curr->name, next->name) * order > 0)
 		{
-			if (!prev)
-				*ls_head = next;
-			else
+			if (prev)
 				prev->next = next;
+			if (curr == *ls_head)
+				*ls_head = next;
 			curr->next = next->next;
 			next->next = curr;
 			curr = *ls_head;
