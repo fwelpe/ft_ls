@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 18:18:40 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 18:43:36 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct		s_flags
 	int				t;
 }					t_flags;
 
-int					take_dir(char *argv, t_flags *flag);
 int					take_flags(char *argv, t_flags *flag);
 int					find_validate_flags(t_flags *flag, char *arg);
 

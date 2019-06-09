@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 15:26:04 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 18:44:22 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-int		take_dir(char *argv, t_flags *flag)
-{
-	char	*direct;
-
-	direct = NULL;
-	if ((direct = ft_strdup(argv)))
-		write_info(direct, flag);
-	else
-	{
-		perror("can't malloc memmory\n");
-		return (0);
-	}
-	return (1);
-}
 
 void	erroring1(char msg)
 {
@@ -80,12 +65,12 @@ int		main(int argc, char **argv)
 		}
 		if (argv[i])
 		{
-			take_dir(argv[i], flag);
+			write_info(argv[i], flag);
 			i++;
 			count++;
 		}
 	}
 	if (!count || argc == 1)
-		take_dir(".", flag);
+		write_info(".", flag);
 	return (0);
 }
