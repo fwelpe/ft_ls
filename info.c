@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 17:15:53 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 13:30:05 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ t_ls		*write_name(DIR *dir, char *direct)
 				ls->next = add_list(ls);
 				ls = ls->next;
 			}
+		ls->path = ft_strdup(file->d_name);
 		ls->name = ft_strdup(file->d_name);
-		ls->print_name = ft_strdup(file->d_name);
 		}
 	}
 	else
@@ -85,8 +85,8 @@ t_ls		*write_name(DIR *dir, char *direct)
 			}
 			temp = ft_strcpy(temp, tmp);
 			temp = ft_strcat(temp, file->d_name);
-			ls->name = ft_strdup(temp);
-			ls->print_name = ft_strdup(file->d_name);
+			ls->path = ft_strdup(temp);
+			ls->name = ft_strdup(file->d_name);
 			free(temp);
 		}
 		free(tmp);
