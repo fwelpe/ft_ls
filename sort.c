@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:16:48 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 13:25:35 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,11 +143,8 @@ int		test_time_sort(t_ls *ls)
 int		time_sort(t_ls *ls, int order)
 {
 	struct stat	buf;
-	t_date		*date;
 	t_ls		*head;
-	long int	ttime;
 
-	date = NULL;
 	head = ls;
 	while (ls)
 	{
@@ -157,23 +154,5 @@ int		time_sort(t_ls *ls, int order)
 	}
 	ls = head;
 	test_time_sort(ls);
-	return (0);
-}
-
-int		take_stime(t_ls *ls)
-{
-	struct stat	buf;
-	t_ls		*head;
-	size_t		i;
-
-	i = 0;
-	head = ls;
-	while (ls)
-	{
-		stat(ls->path, &buf);
-		ls->unix_time = buf.st_mtime;
-		ls = ls->next;
-	}
-	ls = head;
 	return (0);
 }
