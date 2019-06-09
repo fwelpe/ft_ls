@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/04/02 19:56:33 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 13:33:25 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		print_ls(t_ls *ls, t_flags *flag, t_access *access, int blocks)
 			printf("%2s ", ls->group_name);
 			printf("%6d ", ls->size);
 			printf("%-1s ", ls->m_time);
-			printf("%1s\n", ls->print_name);
+			printf("%1s\n", ls->name);
 			ls = ls->next;
 			access = access->next;
 		}

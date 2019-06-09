@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 12:49:13 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 13:34:27 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int		take_dir(char *argv, t_flags *flag)
 
 void	erroring1(char msg)
 {
-	ft_putstr_fd("ls: illegal option -- ", 2);
+	ft_putstr_fd("ft_ls: illegal option -- ", 2);
 	ft_putchar_fd(msg, 2);
 	ft_putendl_fd(
-	"\nusage: ls [-ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1] [file ...]",
+	"\nusage: ft_ls [-laRrt] [file ...]",
 	2);
 	exit(1);
 }
