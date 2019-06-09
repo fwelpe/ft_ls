@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 12:12:17 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 12:14:19 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ int		sort_string(t_ls *ls, t_flags *flag, t_access *access)
 		ascii_sort(ls, 2);
 	else
 		ascii_sort(ls, 1);
-	// if (flag->t && flag->r)
-	// 	time_sort(ls, 2);
-	// if (flag->t)
-	// {
-	// 	take_stime(ls);
-		// time_sort(ls, 1);
-	// }
 	if (flag->l)
 	{
 		blocks = all_info(ls);
