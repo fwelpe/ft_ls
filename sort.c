@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 18:30:17 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 18:39:19 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		sort_string(t_ls *ls, t_flags *flag)
 	else
 		ascii_sort(&ls, 1);
 	if (flag->t && flag->r)
-		time_sort(&ls, 1);
-	else if (flag->t && !flag->r)
 		time_sort(&ls, -1);
+	else if (flag->t && !flag->r)
+		time_sort(&ls, 1);
 	if (flag->l)
 	{
 		user_info(ls);
@@ -106,7 +106,7 @@ void		time_sort(t_ls **ls_head, int order)
 	while (curr)
 	{
 		next = curr->next;
-		if (next && (((curr->unix_time - next->unix_time) * order) > 0))
+		if (next && (((curr->unix_time - next->unix_time) * order) < 0))
 		{
 			if (prev)
 				prev->next = next;
