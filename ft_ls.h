@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:25:40 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 13:58:32 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@
 # include <stdlib.h> //malloc | free | exit
 # include <stdio.h> //perror | strerror
 # include <pwd.h> 
+typedef struct 		s_access
+{
+	char			*user;
+	char			*group;
+	char			*other;
+	char			*type;
+	struct s_access	*next;
+}					t_access;
+
 
 typedef struct		s_ls
 {
@@ -42,6 +51,7 @@ typedef struct		s_ls
 	int				count;
 	long long int	block;
 	void			*data;
+	t_access		access;
 	struct s_ls		*next;
 }					t_ls;
 
@@ -53,15 +63,6 @@ typedef struct		s_flags
 	int				R;
 	int				t;
 }					t_flags;
-
-typedef struct 		s_access
-{
-	char			*user;
-	char			*group;
-	char			*other;
-	char			*type;
-	struct s_access	*next;
-}					t_access;
 
 int					take_dir(char *argv, t_flags *flag);
 int					take_flags(char *argv, t_flags *flag);
