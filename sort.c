@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 17:44:37 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 18:30:17 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ int		sort_string(t_ls *ls, t_flags *flag)
 {
 	int		blocks;
 
-	blocks = 0;
+	blocks = all_info(ls);
 	if (!flag->a)
 		ls = rm_dotf(ls);
 	if (flag->r)
 		ascii_sort(&ls, -1);
 	else
 		ascii_sort(&ls, 1);
-	if (flag->t)
-		time_sort(ls, 1);
+	if (flag->t && flag->r)
+		time_sort(&ls, 1);
+	else if (flag->t && !flag->r)
+		time_sort(&ls, -1);
 	if (flag->l)
 	{
-		blocks = all_info(ls);
 		user_info(ls);
 	}
 	print_ls(ls, flag, blocks);
@@ -65,7 +66,7 @@ t_ls	*rm_dotf(t_ls *ls)
 	return (ls);
 }
 
-int		ascii_sort(t_ls **ls_head, int order)
+void		ascii_sort(t_ls **ls_head, int order)
 {
 	t_ls	*prev;
 	t_ls	*curr;
@@ -92,56 +93,33 @@ int		ascii_sort(t_ls **ls_head, int order)
 			curr = curr->next;
 		}
 	}
-	return (0);
 }
 
-int		test_time_sort(t_ls *ls)
+void		time_sort(t_ls **ls_head, int order)
 {
-	char		*tmp;
-	long int	temp;
-	t_ls		*head;
+	t_ls	*prev;
+	t_ls	*curr;
+	t_ls	*next;
 
-	tmp = NULL;
-	if (ls == NULL)
-		return (1);
-	head = ls;
-	while (ls)
+	prev = NULL;
+	curr = *ls_head;
+	while (curr)
 	{
-		if ((ls->unix_time - head->unix_time) > 0)
+		next = curr->next;
+		if (next && (((curr->unix_time - next->unix_time) * order) > 0))
 		{
-			tmp = head->name;
-			head->name = ls->name;
-			ls->name = tmp;
-			tmp = head->path;
-			head->path = ls->path;
-			ls->path = tmp;
-			temp = head->unix_time;
-			head->unix_time = ls->unix_time;
-			ls->unix_time = temp;
+			if (prev)
+				prev->next = next;
+			if (curr == *ls_head)
+				*ls_head = next;
+			curr->next = next->next;
+			next->next = curr;
+			curr = *ls_head;
 		}
-		ls = ls->next;
-		if (ls == NULL)
+		else
 		{
-			if (test_time_sort(head->next))
-				return (1);
+			prev = curr;
+			curr = curr->next;
 		}
 	}
-	return (0);
-}
-
-int		time_sort(t_ls *ls, int order)
-{
-	struct stat	buf;
-	t_ls		*head;
-
-	head = ls;
-	while (ls)
-	{
-		stat(ls->path, &buf);
-		ls->unix_time = buf.st_mtime;
-		ls = ls->next;
-	}
-	ls = head;
-	test_time_sort(ls);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 17:06:00 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 18:32:48 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int				all_info(t_ls *ls)
 		ls->block = buf.st_blocks;
 		ls->link = buf.st_nlink;
 		ls->size = buf.st_size;
+		ls->unix_time = buf.st_mtime;
 		ls->m_time = ft_strsub(ctime(&buf.st_mtime), 4, 12);
 		ls->uid = buf.st_uid;
 		blocks = blocks + ls->block;
