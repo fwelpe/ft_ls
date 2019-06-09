@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 18:44:22 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 19:41:45 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,23 @@ void	erroring1(char msg)
 {
 	ft_putstr_fd("ft_ls: illegal option -- ", 2);
 	ft_putchar_fd(msg, 2);
-	ft_putendl_fd(
-	"\nusage: ft_ls [-laRrt] [file ...]",
-	2);
+	ft_putendl_fd("\nusage: ft_ls [-Ralrt] [file ...]",	2);
 	exit(1);
 }
 
-int		find_validate_flags(t_flags *flag, char *arg)
+int		parse_validate_flags(t_flags *flag, char *arg)
 {
 	int		i;
 
 	i = 1;
 	while (arg[i])
 	{
-		if (arg[i] == 'l')
-			flag->l = 1;
-		else if (arg[i] == 'R')
+		if (arg[i] == 'R')
 			flag->R = 1;
 		else if (arg[i] == 'a')
 			flag->a = 1;
+		else if (arg[i] == 'l')
+			flag->l = 1;
 		else if (arg[i] == 'r')
 			flag->r = 1;
 		else if (arg[i] == 't')
@@ -60,7 +58,7 @@ int		main(int argc, char **argv)
 	{
 		if (argv[i][0] == '-')
 		{
-			find_validate_flags(flag, argv[i]);
+			parse_validate_flags(flag, argv[i]);
 			i++;
 		}
 		if (argv[i])

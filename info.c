@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 18:32:48 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 19:44:59 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ int				write_info(char *direct, t_flags *flag)
 	blocks = 0;
 	if ((dir = opendir(direct)) == NULL)
 	{
-		ft_putstr("ft_ls: ");
-		ft_putstr(direct);
-		ft_putstr(": No such file or directory\n");
+		ft_putstr_fd("ft_ls: ", 2);
+		ft_putstr_fd(direct, 2);
+		ft_putendl_fd(": No such file or directory", 2);
 		exit(1);
 	}
 	ls = write_name(dir, direct);
 	closedir(dir);
 	dir = NULL;
-	blocks = sort_string(ls, flag);
+	blocks = sort_list(ls, flag);
 	return (0);
 }
 

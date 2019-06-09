@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unitoa.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 20:34:02 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 17:16:56 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 19:45:20 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char		*ft_unitoa(unsigned short n)
 
 	count = 1;
 	n_len = n;
-	// printf("+\n");
 	while (n_len / 8)
 	{
 		n_len /= 8;

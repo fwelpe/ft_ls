@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 18:43:36 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 19:44:52 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,17 @@ typedef struct		s_flags
 	int				t;
 }					t_flags;
 
-int					take_flags(char *argv, t_flags *flag);
-int					find_validate_flags(t_flags *flag, char *arg);
-
+int					parse_validate_flags(t_flags *flag, char *arg);
 int					write_info(char *direct, t_flags *flag);
 t_ls				*write_name(DIR *dir, char *direct);
 int					all_info(t_ls *ls);
 int					take_rights(t_ls *ls, struct stat buf);
 char				*take_chmod(char *access, int num);
 void				user_info(t_ls *ls);
-
 t_flags				*create_flag();
 t_ls				*add_list(t_ls *head);
 
-int					sort_string(t_ls *ls, t_flags *flag);
+int					sort_list(t_ls *ls, t_flags *flag);
 t_ls				*rm_dotf(t_ls *ls);
 void				ascii_sort(t_ls **ls, int order);
 void				time_sort(t_ls **ls, int order);
