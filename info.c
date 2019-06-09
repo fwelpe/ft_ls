@@ -6,13 +6,13 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 15:21:20 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 16:45:47 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		write_info(char *direct, t_flags *flag)
+int				write_info(char *direct, t_flags *flag)
 {
 	t_ls			*ls;
 	DIR				*dir;
@@ -34,65 +34,39 @@ int		write_info(char *direct, t_flags *flag)
 	return (0);
 }
 
-t_ls		*write_name(DIR *dir, char *direct)
+t_ls			*write_name(DIR *dir, char *direct)
 {
 	struct dirent	*file;
 	t_ls			*ls;
 	t_ls			*head;
-	char			*tmp;
-	char			*temp;
+	char			*dir_path;
 	size_t			d_len;
-	int				i;
 
-	i = 0;
 	ls = add_list(NULL);
-	d_len = ft_strlen(direct);
-	tmp = ft_strnew(d_len + 1);
-	while (direct[i] != '\0')
-	{
-		tmp[i] = direct[i];
-		i++;
-	}
-	tmp[i] = '/';
-	tmp[++i] = '\0';
+	dir_path = ft_strnew((ft_strlen(direct)) + 1);
+	dir_path = ft_strcpy(dir_path, direct);
+	dir_path = ft_strcat(dir_path, "/");
 	file = NULL;
 	head = ls;
-	if ((ft_strcmp(direct, ".")) == 0)
-	{	
-		while ((file = readdir(dir)) != NULL)
-		{
-			if (ls->name)
-			{
-				ls->next = add_list(ls);
-				ls = ls->next;
-			}
-		ls->path = ft_strdup(file->d_name);
-		ls->name = ft_strdup(file->d_name);
-		}
-	}
-	else
+
+	while ((file = readdir(dir)) != NULL)
 	{
-		while ((file = readdir(dir)) != NULL)
+		if (ls->name)
 		{
-			temp = ft_strnew(d_len + file->d_namlen + 1);
-			if (ls->name)
-			{
-				ls->next = add_list(ls);
-				ls = ls->next;
-			}
-			temp = ft_strcpy(temp, tmp);
-			temp = ft_strcat(temp, file->d_name);
-			ls->path = ft_strdup(temp);
-			ls->name = ft_strdup(file->d_name);
-			free(temp);
+			ls->next = add_list(ls);
+			ls = ls->next;
 		}
-		free(tmp);
+		ls->path = ft_strnew(ft_strlen(direct) + file->d_namlen + 1);
+		ls->path = ft_strcpy(ls->path, dir_path);
+		ls->path = ft_strcat(ls->path, file->d_name);
+		ls->name = ft_strdup(file->d_name);
 	}
+	free(dir_path);
 	ls = head;
 	return (ls);
 }
 
-int		all_info(t_ls *ls)
+int				all_info(t_ls *ls)
 {
 	struct stat		buf;
 	int				blocks;
@@ -113,7 +87,7 @@ int		all_info(t_ls *ls)
 	return (blocks);
 }
 
-int		take_rights(t_ls *ls, struct stat buf)
+int				take_rights(t_ls *ls, struct stat buf)
 {
 	ls->access.chmod_access = ft_unitoa(buf.st_mode);
 	if (S_ISREG(buf.st_mode))
@@ -129,7 +103,7 @@ int		take_rights(t_ls *ls, struct stat buf)
 	return (0);
 }
 
-char	*take_chmod(char *access, int num)
+char			*take_chmod(char *access, int num)
 {
 	char	*new;
 	int		i;
@@ -155,7 +129,7 @@ char	*take_chmod(char *access, int num)
 	return (new);
 }
 
-void	user_info(t_ls *ls)
+void			user_info(t_ls *ls)
 {
 	struct passwd	*userinfo;
 	struct group	*grinfo;
