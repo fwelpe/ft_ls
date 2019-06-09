@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/07 19:35:39 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 12:04:23 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ int		sort_string(t_ls *ls, t_flags *flag, t_access *access)
 	int		blocks;
 
 	blocks = 0;
-	if (flag->r)
-		ascii_sort(ls, 2);
-	else
-		ascii_sort(ls, 1);
 	if (!flag->a)
 		ls = rm_dotf(ls);
 	if (flag->t)
 	{
 		time_sort(ls, 1);
 	}
+	// else if (flag->r)
+	// 	ascii_sort(ls, 2);
+	// else
+	// 	ascii_sort(ls, 1);
 	// if (flag->t && flag->r)
 	// 	time_sort(ls, 2);
 	// if (flag->t)
@@ -156,11 +156,10 @@ int		time_sort(t_ls *ls, int order)
 	{
 		stat(ls->name, &buf);
 		ls->sort_time = buf.st_mtime;
+		printf("%s  ==  %ld\n", ls->name, ls->sort_time);
 		ls = ls->next;
 	}
 	ls = head;
-	// date = mod_time(ls);
-	// sort(date, ls, order);
 	test_time_sort(ls);
 	return (0);
 }
@@ -172,7 +171,8 @@ int		sort(t_date *date, t_ls *ls, int order)
 	t_date	*temp;
 	t_date	*tdate;
 	char	*tmp;
-	int		i;
+	int		s_time;
+	int		s_letter;
 
 	i = 0;
 	head = ls;
