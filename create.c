@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:24:00 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 14:32:55 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,6 @@ t_ls	*add_list(t_ls *head)
 	tmp = head;
 	new = (t_ls *)malloc(sizeof(t_ls));
 	ft_bzero(new, sizeof(t_ls));
-	if (tmp == NULL)
-		head = new;
-	else
-	{
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	return (new);
-}
-
-t_access	*creat_access(t_access *head)
-{
-	t_access	*new;
-	t_access	*tmp;
-
-	tmp = head;
-	new = (t_access *)malloc(sizeof(t_access));
-	ft_bzero(new, sizeof(t_access));
 	if (tmp == NULL)
 		head = new;
 	else

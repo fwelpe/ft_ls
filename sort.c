@@ -6,13 +6,13 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:25:35 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 15:07:15 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		sort_string(t_ls *ls, t_flags *flag, t_access *access)
+int		sort_string(t_ls *ls, t_flags *flag)
 {
 	int		blocks;
 
@@ -31,9 +31,8 @@ int		sort_string(t_ls *ls, t_flags *flag, t_access *access)
 	{
 		blocks = all_info(ls);
 		user_info(ls);
-		take_rights(ls, access);
 	}
-	print_ls(ls, flag, access, blocks);
+	print_ls(ls, flag, blocks);
 	return (blocks);
 }
 

@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:30:05 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/09 15:21:20 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 int		write_info(char *direct, t_flags *flag)
 {
-	t_access		*access;
 	t_ls			*ls;
 	DIR				*dir;
 	int				blocks;
 
 	ls = NULL;
-	access = creat_access(NULL);
 	blocks = 0;
-	if ((dir = opendir(direct)) == NULL) //TODO: normal error
+	if ((dir = opendir(direct)) == NULL)
 	{
 		ft_putstr("ft_ls: ");
 		ft_putstr(direct);
@@ -32,8 +30,7 @@ int		write_info(char *direct, t_flags *flag)
 	ls = write_name(dir, direct);
 	closedir(dir);
 	dir = NULL;
-	blocks = sort_string(ls, flag, access);
-	// print_ls(ls, flag, access, blocks);
+	blocks = sort_string(ls, flag);
 	return (0);
 }
 
@@ -103,8 +100,8 @@ int		all_info(t_ls *ls)
 	blocks = 0;
 	while (ls)
 	{
-		stat(ls->name, &buf);
-		ls->acess = ft_unitoa(buf.st_mode);
+		lstat(ls->name, &buf);
+		take_rights(ls, buf);
 		ls->block = buf.st_blocks;
 		ls->link = buf.st_nlink;
 		ls->size = buf.st_size;
@@ -116,28 +113,19 @@ int		all_info(t_ls *ls)
 	return (blocks);
 }
 
-int		take_rights(t_ls *ls, t_access *access)
+int		take_rights(t_ls *ls, struct stat buf)
 {
-	t_access	*head;
-
-	head = access;
-	while (ls)
-	{
-		if (access->type)
-		{
-			access->next = creat_access(access);
-			access = access->next;
-		}
-		if (ls->acess[0] == '1')
-			access->type = ft_strdup("-");
-		else
-			access->type = ft_strdup("d");
-		access->user = take_chmod(ls->acess, 1);
-		access->group = take_chmod(ls->acess, 2);
-		access->other = take_chmod(ls->acess, 3);
-		ls = ls->next;
-	}
-	access = head;
+	ls->access.chmod_access = ft_unitoa(buf.st_mode);
+	if (S_ISREG(buf.st_mode))
+		ls->access.type = ft_strdup("-");
+	if (S_ISDIR(buf.st_mode))
+		ls->access.type = ft_strdup("d");
+	if (S_ISLNK(buf.st_mode))
+		ls->access.type = ft_strdup("l");
+	ls->access.user = take_chmod(ls->access.chmod_access, 1);
+	ls->access.group = take_chmod(ls->access.chmod_access, 2);
+	ls->access.other = take_chmod(ls->access.chmod_access, 3);
+	ls = ls->next;
 	return (0);
 }
 

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 13:33:25 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/09 15:10:05 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		print_ls(t_ls *ls, t_flags *flag, t_access *access, int blocks)
+int		print_ls(t_ls *ls, t_flags *flag, int blocks)
 {
 	if (flag->l == 1)
 	{
 		printf("total: %d\n", blocks);
 		while (ls)
 		{
-			printf("%s", access->type);
-			printf("%s", access->user);
-			printf("%s", access->group);
-			printf("%s ", access->other);
+			printf("%s", ls->access.type);
+			printf("%s", ls->access.user);
+			printf("%s", ls->access.group);
+			printf("%s ", ls->access.other);
 			printf("%4d ", ls->link);
 			printf("%3s ", ls->user_name);
 			printf("%2s ", ls->group_name);
@@ -30,7 +30,6 @@ int		print_ls(t_ls *ls, t_flags *flag, t_access *access, int blocks)
 			printf("%-1s ", ls->m_time);
 			printf("%1s\n", ls->name);
 			ls = ls->next;
-			access = access->next;
 		}
 	}
 	else if (flag->l == 0)
