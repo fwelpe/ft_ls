@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:41:33 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 13:53:44 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,10 @@ int		parse_validate_flags(t_flags *flag, char *arg)
 int		main(int argc, char **argv)
 {
 	int		i;
-	// int		count;
 	t_flags	*flag;
 	char	wrong_flag[3];
 
 	i = 1;
-	// count = 0;
 	flag = create_flag();
 	while (argv[i] && argv[i][0] == '-')
 	{

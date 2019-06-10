@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:42:51 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 13:53:14 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ t_ls			*write_info(char *direct, t_flags *flag)
 {
 	t_ls			*ls;
 	DIR				*dir;
-	// int				blocks;
 
 	ls = NULL;
-	// blocks = 0;
 	if ((dir = opendir(direct)) == NULL)
 	{
 		ft_putstr_fd("ft_ls: ", 2);
@@ -30,7 +28,6 @@ t_ls			*write_info(char *direct, t_flags *flag)
 	ls = write_name(dir, direct);
 	closedir(dir);
 	dir = NULL;
-	// blocks = sort_list(ls, flag);
 	return (ls);
 }
 

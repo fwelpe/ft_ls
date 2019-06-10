@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:50:27 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 13:53:28 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 t_ls		*sort_list(t_ls *ls, t_flags *flag)
 {
-	// int		blocks;
-
-	// blocks = all_info(ls);
 	if (!flag->a)
 		ls = rm_dotf(ls);
 	if (flag->r)
@@ -31,8 +28,6 @@ t_ls		*sort_list(t_ls *ls, t_flags *flag)
 	{
 		user_info(ls);
 	}
-	// print_ls(ls, flag, blocks);
-	// return (blocks);
 	return (ls);
 }
 
