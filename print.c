@@ -3,14 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 15:10:05 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 15:53:50 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void	print_indent(char *s, int indt)
+{
+	int	l;
+	int indt_modulo;
+
+	l = ft_strlen(s);
+	indt_modulo = indt < 0 ? -indt : indt;
+	if (indt_modulo < l)
+		ft_putstr(s);
+	else if (indt > 0)
+	{
+		indt_modulo -= l;
+		while (indt_modulo--)
+			ft_putchar(' ');
+		ft_putstr(s);
+	}
+	else
+	{
+		indt_modulo += l;
+		ft_putstr(s);
+		while (indt_modulo--)
+			ft_putchar(' ');
+	}
+
+}
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks)
 {
