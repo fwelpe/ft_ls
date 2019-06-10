@@ -6,7 +6,7 @@
 #    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/10 14:13:29 by thaley           ###   ########.fr        #
+#    Updated: 2019/06/10 17:09:01 by thaley           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ $(OBJ_DIR):
 	mkdir $@
 
 $(OBJ_DIR)%.o: %.c
-	gcc $(FLAGS) -o $@ -c $^
+	gcc $(CFLAGS) -o $@ -c $^
 
 all: $(NAME)
 
