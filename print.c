@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 15:53:50 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/10 17:14:51 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	print_indent(char *s, int indt)
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks)
 {
+	char	buf[100];
+
 	if (flag->l == 1)
 	{
 		printf("total: %d\n", blocks);
@@ -54,7 +56,13 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks)
 			printf("%2s ", ls->group_name);
 			printf("%6d ", ls->size);
 			printf("%-1s ", ls->m_time);
-			printf("%1s\n", ls->name);
+			printf("%1s", ls->name);
+			if (ls->type == 10)
+			{
+				buf[readlink(ls->path, buf, 100)] = '\0';
+				printf(" -> %s", buf);
+			}
+			printf("\n");
 			ls = ls->next;
 		}
 	}
