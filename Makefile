@@ -3,35 +3,40 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
+#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/05 17:39:31 by thaley           ###   ########.fr        #
+#    Updated: 2019/06/10 12:56:01 by cdenys-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-
-CFLAGS = -g #-Wall -Wextra -Werror -g
+OBJ_DIR = objects/
+CFLAGS = -g #-Wall -Wextra -Werror
 
 SRC = $(wildcard *.c)
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
-OBJLIB = ./libft/*.o
-
-$(NAME): $(OBJ)
+$(NAME): $(OBJ_DIR) $(OBJ)
 	make -C ./libft
 	gcc $(CFLAGS) -o $(NAME) $(OBJ) -L libft/ -lft
+
+$(OBJ_DIR):
+	mkdir $@
+
+$(OBJ_DIR)%.o: %.c
+	gcc $(FLAGS) -o $@ -c $^
 
 all: $(NAME)
 
 clean:
 	make -C ./libft clean
-	rm -f *.o
+	rm -f $(OBJ)
 
-fclean:
+fclean: clean
 	make -C ./libft fclean
 	rm -f $(NAME)
+	rm -f $(OBJ_DIR)
 
 re: fclean all
