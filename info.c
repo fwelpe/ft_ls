@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 14:15:09 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 17:47:08 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ t_ls			*write_info(char *direct, t_flags *flag)
 	ls = NULL;
 	if ((dir = opendir(direct)) == NULL)
 	{
-		ft_putstr_fd("ft_ls: ", 2);
-		ft_putstr_fd(direct, 2);
-		ft_putendl_fd(": No such file or directory", 2);
+		ft_putstr("ft_ls: ");
+		perror(direct);
 		exit(1);
 	}
 	ls = write_name(dir, direct);
