@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
+#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/10 14:13:29 by thaley           ###   ########.fr        #
+#    Updated: 2019/06/10 15:54:45 by cdenys-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ $(OBJ_DIR):
 	mkdir $@
 
 $(OBJ_DIR)%.o: %.c
-	gcc $(FLAGS) -o $@ -c $^
+	gcc $(CFLAGS) -o $@ -c $^
 
 all: $(NAME)
 
