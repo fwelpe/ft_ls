@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:50:24 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 14:08:02 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_ls
 	long int		unix_time;
 	char			*user_name;
 	char			*group_name;
+	int				type;
 	int				size;
 	int				link;
 	int				uid;

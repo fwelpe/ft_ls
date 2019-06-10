@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/10 12:56:01 by cdenys-a         ###   ########.fr        #
+#    Updated: 2019/06/10 14:13:29 by thaley           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,6 @@ clean:
 fclean: clean
 	make -C ./libft fclean
 	rm -f $(NAME)
-	rm -f $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 re: fclean all

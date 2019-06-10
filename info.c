@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:53:14 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 14:15:09 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ t_ls			*write_name(DIR *dir, char *direct)
 		ls->path = ft_strcpy(ls->path, dir_path);
 		ls->path = ft_strcat(ls->path, file->d_name);
 		ls->name = ft_strdup(file->d_name);
+		DT_REG == file->d_type ? ls->type = 8 : 0;
+		DT_DIR == file->d_type ? ls->type = 4 : 0;
+		DT_LNK == file->d_type ? ls->type = 10 : 0;
 	}
 	free(dir_path);
 	ls = head;
