@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 13:53:44 by cdenys-a          #+#    #+#              #
-#    Updated: 2018/12/02 19:04:57 by cdenys-a         ###   ########.fr        #
+#    Updated: 2019/06/10 18:17:23 by thaley           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJS = *.o
 all: ${NAME}
 
 ${NAME}:
-	gcc -Wall -Wextra -Werror -c ${SRCS} -I.
+	gcc -g -Wall -Wextra -Werror -c ${SRCS} -I.
 	ar rc ${NAME} ${OBJS}
 	ranlib ${NAME}
 

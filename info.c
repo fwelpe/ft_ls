@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 17:47:08 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 18:50:47 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,22 @@ t_ls			*write_info(char *direct, t_flags *flag)
 	return (ls);
 }
 
+char			*take_path(char *direct)
+{
+	char	*new;
+	int		check;
+
+	if ((ft_strstr(direct, "/")) != NULL)
+		new = ft_strdup(direct);
+	else
+	{
+		new = ft_strnew(ft_strlen(direct) + 1);
+		new = ft_strcpy(new, direct);
+		new = ft_strcat(new, "/");
+	}
+	return (new);
+}
+
 t_ls			*write_name(DIR *dir, char *direct)
 {
 	struct dirent	*file;
@@ -39,9 +55,7 @@ t_ls			*write_name(DIR *dir, char *direct)
 	size_t			d_len;
 
 	ls = add_list(NULL);
-	dir_path = ft_strnew((ft_strlen(direct)) + 1);
-	dir_path = ft_strcpy(dir_path, direct);
-	dir_path = ft_strcat(dir_path, "/");
+	dir_path = take_path(direct);
 	file = NULL;
 	head = ls;
 
@@ -67,20 +81,23 @@ t_ls			*write_name(DIR *dir, char *direct)
 
 int				all_info(t_ls *ls)
 {
-	struct stat		buf;
+	struct stat		sb1;
+	struct stat		sb2;
 	int				blocks;
 
 	blocks = 0;
 	while (ls)
 	{
-		lstat(ls->name, &buf);
-		take_rights(ls, buf);
-		ls->block = buf.st_blocks;
-		ls->link = buf.st_nlink;
-		ls->size = buf.st_size;
-		ls->unix_time = buf.st_mtime;
-		ls->m_time = ft_strsub(ctime(&buf.st_mtime), 4, 12);
-		ls->uid = buf.st_uid;
+		lstat(ls->path, &sb1);
+		stat(ls->path, &sb2);
+		take_rights(ls, sb1);
+		ls->block = sb2.st_blocks;
+		ls->link = sb1.st_nlink;
+		ls->size = sb1.st_size;
+		ls->unix_time = sb1.st_mtime;
+		ls->m_time = ft_strsub(ctime(&sb1.st_mtime), 4, 12);
+		ls->uid = sb2.st_uid;
+		// printf("%s  ==  sb1.uid = %u, sb2.uid = %u\n", ls->name, sb1.st_uid, sb2.st_uid);
 		blocks = blocks + ls->block;
 		ls = ls->next;
 	}
