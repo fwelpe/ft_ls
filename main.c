@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 19:41:45 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:41:33 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,18 @@ int		parse_validate_flags(t_flags *flag, char *arg)
 int		main(int argc, char **argv)
 {
 	int		i;
-	int		count;
+	// int		count;
 	t_flags	*flag;
 	char	wrong_flag[3];
 
 	i = 1;
-	count = 0;
+	// count = 0;
 	flag = create_flag();
-	while (argv[i])
+	while (argv[i] && argv[i][0] == '-')
 	{
-		if (argv[i][0] == '-')
-		{
-			parse_validate_flags(flag, argv[i]);
-			i++;
-		}
-		if (argv[i])
-		{
-			write_info(argv[i], flag);
-			i++;
-			count++;
-		}
+		parse_validate_flags(flag, argv[i]);
+		i++;
 	}
-	if (!count || argc == 1)
-		write_info(".", flag);
+	ls(argv, flag, i);
 	return (0);
 }

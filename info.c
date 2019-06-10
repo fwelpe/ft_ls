@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/09 19:44:59 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/10 13:42:51 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int				write_info(char *direct, t_flags *flag)
+t_ls			*write_info(char *direct, t_flags *flag)
 {
 	t_ls			*ls;
 	DIR				*dir;
-	int				blocks;
+	// int				blocks;
 
 	ls = NULL;
-	blocks = 0;
+	// blocks = 0;
 	if ((dir = opendir(direct)) == NULL)
 	{
 		ft_putstr_fd("ft_ls: ", 2);
@@ -30,8 +30,8 @@ int				write_info(char *direct, t_flags *flag)
 	ls = write_name(dir, direct);
 	closedir(dir);
 	dir = NULL;
-	blocks = sort_list(ls, flag);
-	return (0);
+	// blocks = sort_list(ls, flag);
+	return (ls);
 }
 
 t_ls			*write_name(DIR *dir, char *direct)
