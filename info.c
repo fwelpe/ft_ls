@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 18:50:47 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 19:24:30 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls			*write_info(char *direct, t_flags *flag)
+t_ls			*parse_direct(char *direct, t_flags *flag)
 {
 	t_ls			*ls;
 	DIR				*dir;
@@ -24,7 +24,7 @@ t_ls			*write_info(char *direct, t_flags *flag)
 		perror(direct);
 		exit(1);
 	}
-	ls = write_name(dir, direct);
+	ls = parse_direct_aux(dir, direct);
 	closedir(dir);
 	dir = NULL;
 	return (ls);
@@ -46,7 +46,7 @@ char			*take_path(char *direct)
 	return (new);
 }
 
-t_ls			*write_name(DIR *dir, char *direct)
+t_ls			*parse_direct_aux(DIR *dir, char *direct)
 {
 	struct dirent	*file;
 	t_ls			*ls;
@@ -135,14 +135,14 @@ char			*take_chmod(char *access, int num)
 		i = i - 2;
 	else
 		i = i - 1;
-	access[i] == '0' ? new = ft_strdup("---") : 0;
-	access[i] == '1' ? new = ft_strdup("--x") : 0;
-	access[i] == '2' ? new = ft_strdup("-w-") : 0;
-	access[i] == '3' ? new = ft_strdup("-wx") : 0;
-	access[i] == '4' ? new = ft_strdup("r--") : 0;
-	access[i] == '5' ? new = ft_strdup("r-x") : 0;
-	access[i] == '6' ? new = ft_strdup("rw-") : 0;
-	access[i] == '7' ? new = ft_strdup("rwx") : 0;
+	access[i] == '0' ? new = "---" : 0;
+	access[i] == '1' ? new = "--x" : 0;
+	access[i] == '2' ? new = "-w-" : 0;
+	access[i] == '3' ? new = "-wx" : 0;
+	access[i] == '4' ? new = "r--" : 0;
+	access[i] == '5' ? new = "r-x" : 0;
+	access[i] == '6' ? new = "rw-" : 0;
+	access[i] == '7' ? new = "rwx" : 0;
 	return (new);
 }
 

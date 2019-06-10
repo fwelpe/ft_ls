@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:56:01 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 19:23:54 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ls(char **arg, t_flags *flag, int i)
 	ls = NULL;
 	if (!arg[i])
 	{
-		ls = write_info(".", flag);
+		ls = parse_direct(".", flag);
 		blocks = all_info(ls);
 		ls = sort_list(ls, flag);
 		print_ls(ls, flag, blocks);
@@ -30,7 +30,7 @@ void			ls(char **arg, t_flags *flag, int i)
 	{
 		while (arg[i])
 		{
-			ls = write_info(arg[i], flag);
+			ls = parse_direct(arg[i], flag);
 			blocks = all_info(ls);
 			ls = sort_list(ls, flag);
 			print_ls(ls, flag, blocks);

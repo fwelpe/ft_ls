@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 14:08:02 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/10 19:24:24 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ typedef struct		s_flags
 
 int					parse_validate_flags(t_flags *flag, char *arg);
 void				ls(char **arg, t_flags *flag, int i);
-t_ls				*write_info(char *direct, t_flags *flag);
-t_ls				*write_name(DIR *dir, char *direct);
+t_ls				*parse_direct(char *direct, t_flags *flag);
+t_ls				*parse_direct_aux(DIR *dir, char *direct);
 int					all_info(t_ls *ls);
 int					take_rights(t_ls *ls, struct stat buf);
 char				*take_chmod(char *access, int num);
