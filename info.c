@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 19:24:30 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 11:57:29 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ t_ls			*parse_direct(char *direct, t_flags *flag)
 	DIR				*dir;
 
 	ls = NULL;
-	if ((dir = opendir(direct)) == NULL)
+	if (!(dir = opendir(direct)))
 	{
-		ft_putstr("ft_ls: ");
-		perror(direct);
-		exit(1);
+		return (0);
 	}
 	ls = parse_direct_aux(dir, direct);
 	closedir(dir);

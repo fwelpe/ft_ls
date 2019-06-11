@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 18:46:27 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 12:52:42 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,24 @@ void	erroring1(char msg)
 	ft_putchar_fd(msg, 2);
 	ft_putendl_fd("\nusage: ft_ls [-Ralrt] [file ...]",	2);
 	exit(1);
+}
+
+void	erroring2(int argc, char **argv, int i)
+{
+	DIR				*dir;
+
+	while (i < argc)
+	{
+		if ((dir = opendir(argv[i])) == NULL)
+		{
+			ft_putstr("ft_ls: ");
+			perror(argv[i]);
+		}
+		else
+			closedir(dir);
+		dir = NULL;
+		i++;
+	}
 }
 
 int		parse_validate_flags(t_flags *flag, char *arg)
@@ -75,6 +93,8 @@ int		main(int argc, char **argv)
 		parse_validate_flags(flag, argv[i]);
 		i++;
 	}
+	argv_sort(argc, argv, i, 1);
+	erroring2(argc, argv, i);
 	argv_sort(argc, argv, i, flag->r ? -1 : 1);
 	ls(argv, flag, i);
 	return (0);
