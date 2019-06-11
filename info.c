@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fwlpe <fwlpe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 17:36:34 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:56:30 by fwlpe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ t_ls			*parse_direct_aux(DIR *dir, char *direct)
 			ls->next = add_list(ls);
 			ls = ls->next;
 		}
-		ls->path = ft_strnew(ft_strlen(direct) + file->d_namlen + 1);
+		ls->path = ft_strnew(ft_strlen(direct) + ft_strlen(file->d_name) + 1);
 		ls->path = ft_strcpy(ls->path, dir_path);
 		ls->path = ft_strcat(ls->path, file->d_name);
 		ls->name = ft_strdup(file->d_name);
-		DT_REG == file->d_type ? ls->type = 8 : 0;
-		DT_DIR == file->d_type ? ls->type = 4 : 0;
-		DT_LNK == file->d_type ? ls->type = 10 : 0;
+		4 == file->d_type ? ls->type = 8 : 0;
+		8 == file->d_type ? ls->type = 4 : 0;
+		10 == file->d_type ? ls->type = 10 : 0;
 	}
 	free(dir_path);
 	ls = head;

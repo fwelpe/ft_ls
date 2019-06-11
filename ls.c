@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fwlpe <fwlpe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 19:37:32 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:58:04 by fwlpe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@ void			ls(char **argv, t_flags *flag, int i)
 	}
 	else
 	{
-		/* ls = parse_direct(".", flag);
-		blocks = all_info(ls);
-		ls = sort_list(ls, flag);
-		print_ls(ls, flag, blocks); */
-		
-		
 		while (argv[i])
 		{
 			if ((ls = parse_direct(argv[i], flag)))
@@ -47,7 +41,7 @@ void			ls(char **argv, t_flags *flag, int i)
 	}
 }
 
-void			ls_dir(char *name, t_flags *flag, int name_n_indent)
+/* void			ls_dir(char *name, t_flags *flag, int name_n_indent)
 {
 	t_ls		*ls;
 	int			blocks;
@@ -58,4 +52,4 @@ void			ls_dir(char *name, t_flags *flag, int name_n_indent)
 	blocks = all_info(ls);
 	ls = sort_list(ls, flag);
 	print_ls(ls, flag, blocks);
-}
+} */

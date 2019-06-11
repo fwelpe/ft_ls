@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fwlpe <fwlpe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 17:37:50 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 22:49:50 by fwlpe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/dir.h> //struct dirent
 # include <sys/stat.h> //stat | lstat
 # include <grp.h> //getgrgid
-# include <uuid/uuid.h> //getgrgid | getpwuid
+# include <linux/uuid.h> //getgrgid | getpwuid
 # include <sys/xattr.h> //listxattr | getxattr
 # include <time.h> //time | ctime
 # include <stdlib.h> //malloc | free | exit

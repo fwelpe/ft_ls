@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fwlpe <fwlpe@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 18:53:44 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 23:05:32 by fwlpe            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ int		main(int argc, char **argv)
 	}
 	if (i != argc)
 		flag->outside_flist = 1;
-	// argv_sort(argc, argv, i, flag->r ? -1 : 1);
-	// erroring2(argc, argv, i);
-	// if (flag->r)
-	// 	argv_sort(argc, argv, i, -1);
+	argv_sort(argc, argv, i, flag->r ? -1 : 1);
+	erroring2(argc, argv, i);
+	if (flag->r)
+		argv_sort(argc, argv, i, flag->r ? -1 : 1);
 	ls(argv, flag, i);
 	return (0);
 }
