@@ -6,20 +6,20 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 12:15:00 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 19:37:32 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void			ls(char **arg, t_flags *flag, int i)
+void			ls(char **argv, t_flags *flag, int i)
 {
 	t_ls		*ls;
 	int			blocks;
 
 	blocks = 0;
 	ls = NULL;
-	if (!arg[i])
+	if (!flag->outside_flist)
 	{
 		ls = parse_direct(".", flag);
 		blocks = all_info(ls);
@@ -28,9 +28,15 @@ void			ls(char **arg, t_flags *flag, int i)
 	}
 	else
 	{
-		while (arg[i])
+		/* ls = parse_direct(".", flag);
+		blocks = all_info(ls);
+		ls = sort_list(ls, flag);
+		print_ls(ls, flag, blocks); */
+		
+		
+		while (argv[i])
 		{
-			if ((ls = parse_direct(arg[i], flag)))
+			if ((ls = parse_direct(argv[i], flag)))
 			{
 				blocks = all_info(ls);
 				ls = sort_list(ls, flag);
@@ -39,4 +45,17 @@ void			ls(char **arg, t_flags *flag, int i)
 			i++;
 		}
 	}
+}
+
+void			ls_dir(char *name, t_flags *flag, int name_n_indent)
+{
+	t_ls		*ls;
+	int			blocks;
+	
+	blocks = 0;
+	ls = NULL;
+	ls = parse_direct(name, flag);
+	blocks = all_info(ls);
+	ls = sort_list(ls, flag);
+	print_ls(ls, flag, blocks);
 }

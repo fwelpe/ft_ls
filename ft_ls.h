@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 19:24:24 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:37:50 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_flags
 	int				r;
 	int				R;
 	int				t;
+	int				outside_flist;
 }					t_flags;
 
 int					parse_validate_flags(t_flags *flag, char *arg);
@@ -74,17 +75,14 @@ char				*take_chmod(char *access, int num);
 void				user_info(t_ls *ls);
 t_flags				*create_flag();
 t_ls				*add_list(t_ls *head);
-
 t_ls				*sort_list(t_ls *ls, t_flags *flag);
 t_ls				*rm_dotf(t_ls *ls);
 void				ascii_sort(t_ls **ls, int order);
 void				time_sort(t_ls **ls, int order);
-
 int					take_week(char *sort_time);
 int					take_month(char *sort_time);
-
 char				*ft_unitoa(unsigned short n);
-
 int					print_ls(t_ls *ls, t_flags *flag, int blocks);
+char				*take_path(char *direct);
 
 #endif

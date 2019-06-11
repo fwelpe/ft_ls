@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 11:57:29 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/11 17:36:34 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,6 @@ t_ls			*parse_direct(char *direct, t_flags *flag)
 	return (ls);
 }
 
-char			*take_path(char *direct)
-{
-	char	*new;
-	int		check;
-
-	if ((ft_strstr(direct, "/")) != NULL)
-		new = ft_strdup(direct);
-	else
-	{
-		new = ft_strnew(ft_strlen(direct) + 1);
-		new = ft_strcpy(new, direct);
-		new = ft_strcat(new, "/");
-	}
-	return (new);
-}
-
 t_ls			*parse_direct_aux(DIR *dir, char *direct)
 {
 	struct dirent	*file;
@@ -56,7 +40,6 @@ t_ls			*parse_direct_aux(DIR *dir, char *direct)
 	dir_path = take_path(direct);
 	file = NULL;
 	head = ls;
-
 	while ((file = readdir(dir)) != NULL)
 	{
 		if (ls->name)
@@ -75,6 +58,22 @@ t_ls			*parse_direct_aux(DIR *dir, char *direct)
 	free(dir_path);
 	ls = head;
 	return (ls);
+}
+
+char			*take_path(char *direct)
+{
+	char	*new;
+	int		check;
+
+	if ((ft_strstr(direct, "/")) != NULL)
+		new = ft_strdup(direct);
+	else
+	{
+		new = ft_strnew(ft_strlen(direct) + 1);
+		new = ft_strcpy(new, direct);
+		new = ft_strcat(new, "/");
+	}
+	return (new);
 }
 
 int				all_info(t_ls *ls)
@@ -106,11 +105,11 @@ int				take_rights(t_ls *ls, struct stat buf)
 {
 	ls->access.chmod_access = ft_unitoa(buf.st_mode);
 	if (S_ISREG(buf.st_mode))
-		ls->access.type = ft_strdup("-");
+		ls->access.type = "-";
 	if (S_ISDIR(buf.st_mode))
-		ls->access.type = ft_strdup("d");
+		ls->access.type = "d";
 	if (S_ISLNK(buf.st_mode))
-		ls->access.type = ft_strdup("l");
+		ls->access.type = "l";
 	ls->access.user = take_chmod(ls->access.chmod_access, 1);
 	ls->access.group = take_chmod(ls->access.chmod_access, 2);
 	ls->access.other = take_chmod(ls->access.chmod_access, 3);
