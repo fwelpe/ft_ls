@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 17:53:09 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 17:59:47 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_ls		*add_list(t_ls *head)
 		return (new);
 	else
 	{
-		while (tmp->next != NULL)
-			tmp = tmp->next;
 		tmp->next = new;
 		new->next = NULL;
 	}
