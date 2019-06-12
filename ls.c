@@ -1,19 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ls.c                                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/06/12 17:28:34 by thaley           ###   ########.fr       */
-=======
-/*   Updated: 2019/06/12 18:13:30 by cdenys-a         ###   ########.fr       */
->>>>>>> master
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ls.h"
 
 /* void	ls(char **argv, t_flags *flag, int i)
@@ -116,13 +100,7 @@ void	ls_dir(char *name, t_flags *flag, char **av, int name_n_indent)
 	int			blocks;
 
 	ls = parse_direct(name, flag);
-<<<<<<< HEAD
 	blocks = all_info(ls, flag);
-=======
-	// if (!flag->a)
-	// 	ls = rm_dotf(ls);
-	blocks = all_info(ls);
->>>>>>> master
 	if (av)
 	{
 		report_nonexist(ls, av);

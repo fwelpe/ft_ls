@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/06/12 18:12:22 by thaley           ###   ########.fr       */
-=======
-/*   Updated: 2019/06/12 18:11:34 by cdenys-a         ###   ########.fr       */
->>>>>>> master
+/*   Updated: 2019/06/12 18:37:09 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +94,9 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 				printf("%3s ", ls->user_name);
 				printf("%2s ", ls->group_name);
 				printf("%6d ", ls->size);
-<<<<<<< HEAD
 				printf("%-3s ", ls->month);
 				printf("%-2s ", ls->day);
 				printf("%-5s ", ls->time);
-=======
-				printf("%-1s ", ls->m_time);
->>>>>>> master
 				printf("%1s", ls->name);
 				if (ls->type == 10)
 				{
