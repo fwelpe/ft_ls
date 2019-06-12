@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 17:37:50 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 13:30:54 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void				time_sort(t_ls **ls, int order);
 int					take_week(char *sort_time);
 int					take_month(char *sort_time);
 char				*ft_unitoa(unsigned short n);
-int					print_ls(t_ls *ls, t_flags *flag, int blocks);
+int					print_ls(t_ls *ls, t_flags *flag, int blocks, char *d);
 char				*take_path(char *direct);
+void				ls_dir(char *name, t_flags *flag, char **av, int n);
 
 #endif

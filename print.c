@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 18:03:29 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 13:27:51 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,16 @@ void	print_w_indent(char *s, int indt)
 
 }
 
-int		print_ls(t_ls *ls, t_flags *flag, int blocks)
+int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	char	buf[100];
 
+	if (dir_name)
+	{
+		ft_putstr("\n");
+		ft_putstr(dir_name);
+		ft_putstr(":\n");
+	}
 	if (flag->l == 1)
 	{
 		printf("total: %d\n", blocks);
