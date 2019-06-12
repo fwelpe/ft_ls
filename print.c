@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:27:51 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 16:03:28 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,37 @@ void	print_w_indent(char *s, int indt)
 			ft_putchar(' ');
 	}
 
+}
+
+int		take_len(char *abs)
+{
+	int		max_len;
+	size_t	len;
+
+	len = ft_strlen(abs);
+	if (max_len < len)
+		max_len = len;
+	return (max_len);
+}
+
+int		*max_len(t_ls *ls)
+{
+	int				*max_len;
+
+	max_len[0] = 10;
+	while (ls)
+	{
+		max_len[1] = take_len(ft_itoa(ls->link));
+		max_len[2] = take_len(ls->user_name);
+		max_len[3] = take_len(ls->group_name);
+		max_len[4] = take_len(ft_itoa(ls->size));
+		max_len[5] = take_len(ls->mounth);
+		max_len[6] = take_len(ft_itoa(ls->day));
+		max_len[7] = take_len(ft_itoa(ls->time));
+		max_len[8] = take_len(ls->name);
+		ls = ls->next;
+	}
+	return (max_len);
 }
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)

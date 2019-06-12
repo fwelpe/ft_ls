@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:35:05 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 16:15:16 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct		s_ls
 	char			*path;
 	char			*name;
 	char			*m_time;
+	char			*mounth;
+	char			*day;
+	char			*time;
+	char			*year;
 	long int		unix_time;
 	char			*user_name;
 	char			*group_name;

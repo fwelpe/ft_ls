@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:11:37 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 16:24:13 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_ls	*rm_dotf(t_ls *ls)
 {
 	t_ls	*head;
 
-	head = ls;
-	while (ls->name[0] == '.')
+	head = ls->next;
+	if (ls->name[0] == '.')
 	{
 		head = ls->next;
 		free(ls->path);

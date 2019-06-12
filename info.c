@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:23:12 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 16:17:00 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,14 @@ char			*take_path(char *direct)
 	return (new);
 }
 
+void			split_time(t_ls *ls)
+{
+	ls->mounth = ft_strsub(ls->m_time, 4, 3);
+	ls->day = ft_strsub(ls->m_time, 8, 2);
+	ls->time = ft_strsub(ls->m_time, 11, 5);
+	ls->year = ft_strsub(ls->m_time, 20, 4);
+}
+
 int				all_info(t_ls *ls)
 {
 	struct stat		sb1;
@@ -93,6 +101,7 @@ int				all_info(t_ls *ls)
 		ls->size = sb1.st_size;
 		ls->unix_time = sb1.st_mtime;
 		ls->m_time = ft_strsub(ctime(&sb1.st_mtime), 4, 12);
+		split_time(ls);
 		ls->uid = sb2.st_uid;
 		ls->gid = sb2.st_gid;
 		blocks = blocks + ls->block;
