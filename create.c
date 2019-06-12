@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 17:31:36 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 17:53:09 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_flags	*create_flag()
+t_flags		*create_flag(void)
 {
 	t_flags	*flag;
 
@@ -30,7 +30,7 @@ t_flags	*create_flag()
 	return (flag);
 }
 
-t_ls	*add_list(t_ls *head)
+t_ls		*add_list(t_ls *head)
 {
 	t_ls	*tmp;
 	t_ls	*new;
@@ -39,12 +39,13 @@ t_ls	*add_list(t_ls *head)
 	new = (t_ls *)malloc(sizeof(t_ls));
 	ft_bzero(new, sizeof(t_ls));
 	if (tmp == NULL)
-		head = new;
+		return (new);
 	else
 	{
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = new;
+		new->next = NULL;
 	}
 	return (new);
 }

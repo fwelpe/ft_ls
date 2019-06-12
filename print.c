@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 16:03:28 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 17:51:07 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int		*max_len(t_ls *ls)
 		max_len[2] = take_len(ls->user_name);
 		max_len[3] = take_len(ls->group_name);
 		max_len[4] = take_len(ft_itoa(ls->size));
-		max_len[5] = take_len(ls->mounth);
-		max_len[6] = take_len(ft_itoa(ls->day));
-		max_len[7] = take_len(ft_itoa(ls->time));
+		max_len[5] = take_len(ls->month);
+		max_len[6] = take_len(ls->day);
+		max_len[7] = take_len(ls->time);
 		max_len[8] = take_len(ls->name);
 		ls = ls->next;
 	}
@@ -84,22 +84,27 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 		printf("total: %d\n", blocks);
 		while (ls)
 		{
-			printf("%s", ls->access.type);
-			printf("%s", ls->access.user);
-			printf("%s", ls->access.group);
-			printf("%s ", ls->access.other);
-			printf("%4d ", ls->link);
-			printf("%3s ", ls->user_name);
-			printf("%2s ", ls->group_name);
-			printf("%6d ", ls->size);
-			printf("%-1s ", ls->m_time);
-			printf("%1s", ls->name);
-			if (ls->type == 10)
+			if (ls->print)
 			{
-				buf[readlink(ls->path, buf, 100)] = '\0';
-				printf(" -> %s", buf);
+				printf("%s", ls->access.type);
+				printf("%s", ls->access.user);
+				printf("%s", ls->access.group);
+				printf("%s ", ls->access.other);
+				printf("%4d ", ls->link);
+				printf("%3s ", ls->user_name);
+				printf("%2s ", ls->group_name);
+				printf("%6d ", ls->size);
+				printf("%-3s ", ls->month);
+				printf("%-2s ", ls->day);
+				printf("%-5s ", ls->time);
+				printf("%1s", ls->name);
+				if (ls->type == 10)
+				{
+					buf[readlink(ls->path, buf, 100)] = '\0';
+					printf(" -> %s", buf);
+				}
+				printf("\n");
 			}
-			printf("\n");
 			ls = ls->next;
 		}
 	}
@@ -107,7 +112,8 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 	{
 		while (ls)
 		{
-			printf("%s  ", ls->name);
+			if (ls->print)
+				printf("%s  ", ls->name);
 			ls = ls->next;
 		}
 		printf("\n");

@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 16:24:13 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 17:10:10 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,6 @@ t_ls		*sort_list(t_ls *ls, t_flags *flag)
 	{
 		user_info(ls);
 	}
-	return (ls);
-}
-
-t_ls	*rm_dotf(t_ls *ls)
-{
-	t_ls	*head;
-
-	head = ls->next;
-	if (ls->name[0] == '.')
-	{
-		head = ls->next;
-		free(ls->path);
-		free(ls->name);
-		free(ls);
-		ls = head;
-	}
-	while (ls)
-	{
-		if (ls->name[0] == '.')
-		{
-			while (head && head->next != ls)
-				head = head->next;
-			head->next = ls->next;
-			free(ls->path);
-			free(ls->name);
-			free(ls);
-			ls = head;
-		}
-		ls = ls->next;
-	}
-	ls = head;
 	return (ls);
 }
 

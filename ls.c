@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 16:27:21 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 17:28:34 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,7 @@ void	ls_dir(char *name, t_flags *flag, char **av, int name_n_indent)
 	int			blocks;
 
 	ls = parse_direct(name, flag);
-	if (!flag->a)
-		ls = rm_dotf(ls);
-	blocks = all_info(ls);
+	blocks = all_info(ls, flag);
 	if (av)
 		ls = ls_filter(ls, av);
 	ls = sort_list(ls, flag);
