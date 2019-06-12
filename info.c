@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/11 17:36:34 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 13:23:12 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char			*take_path(char *direct)
 	char	*new;
 	int		check;
 
-	if ((ft_strstr(direct, "/")) != NULL)
+	if (direct[(ft_strlen(direct)) - 1] == '/')
 		new = ft_strdup(direct);
 	else
 	{
@@ -80,7 +80,7 @@ int				all_info(t_ls *ls)
 {
 	struct stat		sb1;
 	struct stat		sb2;
-	int				blocks;
+	long long int	blocks;
 
 	blocks = 0;
 	while (ls)
@@ -88,13 +88,13 @@ int				all_info(t_ls *ls)
 		lstat(ls->path, &sb1);
 		stat(ls->path, &sb2);
 		take_rights(ls, sb1);
-		ls->block = sb2.st_blocks;
+		ls->block = sb1.st_blocks;
 		ls->link = sb1.st_nlink;
 		ls->size = sb1.st_size;
 		ls->unix_time = sb1.st_mtime;
 		ls->m_time = ft_strsub(ctime(&sb1.st_mtime), 4, 12);
 		ls->uid = sb2.st_uid;
-		// printf("%s  ==  sb1.uid = %u, sb2.uid = %u\n", ls->name, sb1.st_uid, sb2.st_uid);
+		ls->gid = sb2.st_gid;
 		blocks = blocks + ls->block;
 		ls = ls->next;
 	}
@@ -155,7 +155,7 @@ void			user_info(t_ls *ls)
 			 ls = ls->next;
 			 continue;
 		}
-		if ((grinfo = getgrgid(userinfo->pw_gid)) == NULL)
+		if ((grinfo = getgrgid(ls->gid)) == NULL)
 		{
 			 ls = ls->next;
 			 continue;

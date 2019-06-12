@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/10 13:53:28 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 13:11:37 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 t_ls		*sort_list(t_ls *ls, t_flags *flag)
 {
-	if (!flag->a)
-		ls = rm_dotf(ls);
 	if (flag->r)
 		ascii_sort(&ls, -1);
 	else
