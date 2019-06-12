@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:35:05 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 16:59:57 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct		s_ls
 	long long int	block;
 	void			*data;
 	t_access		access;
+	int				print;
 	struct s_ls		*next;
 }					t_ls;
 

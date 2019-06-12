@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:23:12 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/12 17:03:57 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_ls			*parse_direct_aux(DIR *dir, char *direct)
 		DT_REG == file->d_type ? ls->type = 8 : 0;
 		DT_DIR == file->d_type ? ls->type = 4 : 0;
 		DT_LNK == file->d_type ? ls->type = 10 : 0;
+		ls->print = 1;
 	}
 	free(dir_path);
 	ls = head;
