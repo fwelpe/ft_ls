@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 13:30:25 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:30:13 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 14:00:26 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	ls_dir(char *name, t_flags *flag, char **av, int name_n_indent)
 	t_ls		*ls;
 	int			blocks;
 
+	if (!ft_strcmp(name, "..") || (name_n_indent && !ft_strcmp(name, ".")))
+		return ;
 	ls = parse_direct(name, flag);
+	if (!flag->a)
+		ls = rm_dotf(ls);
 	blocks = all_info(ls);
 	ls = sort_list(ls, flag);
 	print_ls(ls, flag, blocks, name_n_indent ? name : 0);

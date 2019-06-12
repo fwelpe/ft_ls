@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 13:20:59 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/12 13:36:19 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ int		main(int argc, char **argv)
 	// if (flag->r)
 	// 	argv_sort(argc, argv, i, -1);
 	// ls(argv, flag, i);
-	ls_dir(".", flag, 0, flag->outside_flist ? argv : 0);
+	ls_dir(".", flag, flag->outside_flist ? argv : 0, 0);
 	return (0);
 }
