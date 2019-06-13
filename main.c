@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 15:53:23 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/13 12:58:03 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	erroring1(char msg)
 {
 	ft_putstr_fd("ft_ls: illegal option -- ", 2);
 	ft_putchar_fd(msg, 2);
-	ft_putendl_fd("\nusage: ft_ls [-Ralrt] [file ...]",	2);
+	ft_putendl_fd("\nusage: ft_ls [-Ralrt] [file ...]", 2);
 	exit(1);
 }
 
@@ -95,11 +95,6 @@ int		main(int argc, char **argv)
 	}
 	if (i != argc)
 		flag->outside_flist = 1;
-	// argv_sort(argc, argv, i, 1);
-	// erroring2(argc, argv, i);
-	// if (flag->r)
-	// 	argv_sort(argc, argv, i, -1);
-	// ls(argv, flag, i);
 	ls_dir(".", flag, flag->outside_flist ? argv : 0, 0);
 	return (0);
 }
