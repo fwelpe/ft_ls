@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 18:52:29 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/13 18:58:05 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,30 @@ char			*take_path(char *direct)
 
 void			split_time(t_ls *ls)
 {
+	time_t		six;
+
+	six = time(NULL);
+	six = six - 13046400;
 	ls->month = ft_strsub(ls->m_time, 4, 3);
 	ls->day = ft_strsub(ls->m_time, 8, 2);
-	ls->time = ft_strsub(ls->m_time, 11, 5);
-	ls->year = ft_strsub(ls->m_time, 20, 4);
+	if (ls->unix_time <= six)
+		ls->time = ft_strsub(ls->m_time, 20, 4);
+	else
+		ls->time = ft_strsub(ls->m_time, 11, 5);
 }
 
 void			write_info(struct stat sb1, struct stat sb2, t_ls *ls)
 {
 	take_rights(ls, sb1);
 	ls->block = sb1.st_blocks;
-	ls->link = sb1.st_nlink;
-	ls->size = sb1.st_size;
+	ls->link = ft_itoa(sb1.st_nlink);
+	ls->size = ft_itoa(sb1.st_size);
 	ls->unix_time = sb1.st_mtime;
 	ls->m_time = ft_strdup(ctime(&sb1.st_mtime));
 	split_time(ls);
 	ls->uid = sb2.st_uid;
 	ls->gid = sb2.st_gid;
+	
 }
 
 int				all_info(t_ls *ls, t_flags *flag)
