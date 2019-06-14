@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 18:51:51 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/13 18:57:53 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@ typedef struct		s_ls
 	char			*month;
 	char			*day;
 	char			*time;
-	char			*year;
 	long int		unix_time;
 	char			*user_name;
 	char			*group_name;
 	int				type;
-	int				size;
-	int				link;
+	char			*size;
+	char			*link;
 	int				uid;
 	int				gid;
 	int				count;

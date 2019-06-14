@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 17:25:17 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 17:33:54 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/13 15:12:41 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_ls			*parse_direct(char *direct, t_flags *flag)
 	ls = NULL;
 	if (!(dir = opendir(direct)))
 	{
-		return (0);
+		return (0);			//TODO: вывод ошибки
 	}
 	ls = parse_direct_aux(dir, direct);
 	closedir(dir);
