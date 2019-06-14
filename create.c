@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 17:59:47 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 18:32:01 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_flags		*create_flag(void)
 	return (flag);
 }
 
-t_ls		*add_list(t_ls *head)
+t_ls		*add_list(t_ls *last)
 {
 	t_ls	*tmp;
 	t_ls	*new;
 
-	tmp = head;
+	tmp = last;
 	new = (t_ls *)malloc(sizeof(t_ls));
 	ft_bzero(new, sizeof(t_ls));
 	if (tmp == NULL)

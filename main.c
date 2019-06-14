@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/13 17:45:22 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 18:56:29 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int		main(int argc, char **argv)
 	}
 	if (i != argc)
 		flag->outside_flist = 1;
-	ls_dir(".", flag, flag->outside_flist ? argv : 0, 0);
+	flag->outside_flist ? ls_custom(argv, i, flag) : ls_dir(".", flag, 0);
 	return (0);
 }

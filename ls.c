@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/13 18:17:10 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 19:34:09 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,33 +85,85 @@ void	print_customdirs(char **av, t_flags *flag)
 	while (av[i])
 	{
 		if (av[i][0] == '/')
-			ls_dir(av[i], flag, 0, 1);
+			ls_dir(av[i], flag, 1);
 		i++;
 	}
 }
 
-void	ls_dir(char *name, t_flags *flag, char **av, int name_n_indent)
+void	add_custom(t_ls *ls, char **av, int i)
+{
+
+}
+
+void	ls_custom(char **av, int i, t_flags *flag)
+{
+	struct stat buf1;
+	struct stat buf2;
+	t_ls		*ls;
+	t_ls		*head;
+	
+	ls = add_list(NULL);
+	head = ls;
+	while (av[i])
+	{
+		if (stat(av[i], &buf1) == -1)
+		{
+			ft_putstr_fd("ft_ls: ", 2);
+			perror(av[i]);
+		}
+		else
+		{
+			if (ls->name)
+			{
+				ls->next = add_list(ls);
+				ls = ls->next;
+			}
+			lstat(av[i], &buf2);
+			ls->path = av[i];
+			ls->name = av[i];
+			S_ISLNK(buf1.st_mode) ? ls->type = 10 : 0;
+			S_ISDIR(buf1.st_mode) ? ls->type = 4 : 0;
+			S_ISREG(buf1.st_mode) ? ls->type = 8 : 0;
+			ls->print = (ls->type == 8 || ls->type == 10) ? 1 : 0;
+		}
+		i++;
+	}
+	all_info(head, flag);
+	head = sort_list(head, flag);
+	print_ls(head, flag, -1, 0);
+	while(head)
+	{
+		if (head->type == 4)
+			ls_dir(head->name, flag, 1);
+		head = head->next;
+	}
+}
+
+void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 {
 	t_ls		*ls;
 	int			blocks;
+	int			i;
 
 	ls = parse_direct(name, flag);
 	blocks = all_info(ls, flag);
-	if (av)
+	/* if (av)
 	{
+		i = calc_i_start(av);
 		report_nonexist(ls, av);
 		ls_argv_filter(&ls, av);
-	}
+		add_custom(ls, av, i);
+	} */
 	ls = sort_list(ls, flag);
 	print_ls(ls, flag, blocks, name_n_indent ? name : 0);
-	if (av)
-		print_customdirs(av, flag);
+	/* if (av)
+		print_customdirs(av, flag); */
 	if (flag->R)
 		while (ls)
 		{
-			if (ls->type == DT_DIR && ls->print && ((ft_strcmp(ls->name, ".") &&
-			ft_strcmp(ls->name, "..")) || av))
-				ls_dir(ls->path, flag, 0, 1);
+			if (ls->type == DT_DIR && ls->print && ft_strcmp(ls->name, ".") &&
+			ft_strcmp(ls->name, ".."))
+				ls_dir(ls->path, flag, 1);
 			ls = ls->next;
 		}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/14 16:44:26 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 19:21:53 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	print_w_indent(char *s, int indt)
 	}
 	else
 	{
+		indt_modulo -= l;
 		ft_putstr(s);
-		while (indt_modulo > l)
-		{
+		while (indt_modulo--)
 			ft_putchar(' ');
-			indt_modulo--;
-		}
 	}
 }
 
@@ -103,9 +101,12 @@ void	print_ls_l(t_ls *ls, int blocks)
 	len = (int *)malloc(sizeof(int) * 8);
 	ft_bzero(len, (sizeof(int) * 8));
 	len = max_len(ls, len);
-	ft_putstr("total ");
-	ft_putnbr(blocks);
-	write(1, "\n", 1);
+	if (blocks != -1)
+	{
+		ft_putstr("total ");
+		ft_putnbr(blocks);
+		write(1, "\n", 1);
+	}
 	while (ls)
 	{
 		if (ls->print)

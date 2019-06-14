@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/13 18:57:53 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 18:56:12 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int					take_month(char *sort_time);
 char				*ft_unitoa(unsigned short n);
 int					print_ls(t_ls *ls, t_flags *flag, int blocks, char *d);
 char				*take_path(char *direct);
-void				ls_dir(char *name, t_flags *flag, char **av, int n);
+void				ls_dir(char *name, t_flags *flag, int name_n_indent);
+void				argv_sort(int argc, char **argv, int i, int order);
+void				ls_custom(char **av, int i, t_flags *flag);
 
 #endif
