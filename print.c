@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/13 20:32:56 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/14 16:15:38 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	write_ls_l(t_ls *ls, int blocks)
 			if (ls->type == 10)
 				print_symlink(ls);
 			else
-				print_w_indent(ls->name, (len[8] * -1));
+				print_w_indent(ls->name, (len[7] * -1));
 			write(1, "\n", 1);
 		}
 		ls = ls->next;
