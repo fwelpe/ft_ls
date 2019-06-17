@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 18:02:56 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:20:58 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	while(head)
 	{
 		if (head->type == 4)
-			ls_dir(head->name, flag, 1);
+			ls_dir(head->name, flag, flag->onedir ? 0 : 1);
 		head = head->next;
 	}
 }

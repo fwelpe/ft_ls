@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   parse_direct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 17:25:17 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 15:03:29 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:18:01 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int				is_onlyonedir(int ac, char **av, int i)
+{
+	DIR				*dir;
+	
+	if (i + 1 == ac && (dir = opendir(av[i])))
+	{
+		closedir(dir);
+		return (1);
+	}
+	return (0);
+}
 
 t_ls			*parse_direct(char *direct)
 {

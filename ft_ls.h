@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 17:18:54 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 18:18:24 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_flags
 	int				t;
 	int				outside_flist;
 	int				indt_custom;
+	int				onedir;
 }					t_flags;
 
 int					parse_validate_flags(t_flags *flag, char *arg);
@@ -95,5 +96,6 @@ void				argv_sort(int argc, char **argv, int i, int order);
 void				ls_custom(char **av, int i, t_flags *flag);
 void				ls_free_l(t_ls *l);
 void				ls_free(t_ls *l);
+int					is_onlyonedir(int ac, char **av, int i);
 
 #endif
