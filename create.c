@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:29:48 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:58:19 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_flags		create_flag(void)
 	flag.l = 0;
 	flag.a = 0;
 	flag.r = 0;
-	flag.R = 0;
+	flag.recursive = 0;
 	flag.t = 0;
 	flag.outside_flist = 0;
 	flag.indt_custom = 0;

@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:44:48 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:58:32 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		parse_validate_flags(t_flags *flag, char *arg)
 	while (arg[i])
 	{
 		if (arg[i] == 'R')
-			flag->R = 1;
+			flag->recursive = 1;
 		else if (arg[i] == 'a')
 			flag->a = 1;
 		else if (arg[i] == 'l')

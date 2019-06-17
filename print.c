@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:55:14 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:58:01 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	print_w_indent(char *s, int indt)
 
 void	max_len(t_ls *ls, int **max_len)
 {
+	int		len;
+
 	while (ls)
 	{
 		if (ls->print)
