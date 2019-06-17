@@ -6,7 +6,7 @@
 #    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/17 16:40:27 by cdenys-a         ###   ########.fr        #
+#    Updated: 2019/06/17 17:56:30 by cdenys-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette *.c
+	norminette *.c *.h
 
 tests:
 	rm -f test/ls.txt test/ft_ls.txt
