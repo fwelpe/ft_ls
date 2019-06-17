@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:35:42 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 20:31:01 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				all_info(t_ls *ls, t_flags *flag)
 	{
 		lstat(ls->path, &sb1);
 		stat(ls->path, &sb2);
-		if (!flag->a && ls->name[0] == '.')
+		if (!flag->a && ls->name && ls->name[0] == '.')
 			ls->print = 0;
 		else
 		{

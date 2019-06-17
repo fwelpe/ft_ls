@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:58:32 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 20:20:13 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int		parse_validate_flags(t_flags *flag, char *arg)
 			flag->r = 1;
 		else if (arg[i] == 't')
 			flag->t = 1;
+		else if (arg[i] == '1')
+			flag->one_opt = 1;
 		else
 			erroring1(arg[i]);
 		i++;
