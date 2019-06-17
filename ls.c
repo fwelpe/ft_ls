@@ -6,88 +6,11 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 17:18:58 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:51:42 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-int		calc_i_start(char **av)
-{
-	int	i;
-
-	i = 1;
-	while (av[i][0] == '-')
-		i++;
-	return (i);
-}
-
-void	nofile_err(char *filename)
-{
-	ft_putstr("ft_ls: ");
-	ft_putstr(filename);
-	ft_putendl(": No such file or directory");
-}
-
-void	report_nonexist(t_ls *ls, char **av)
-{
-	int		i;
-	t_ls	*ls_head;
-	int		report;
-
-	i = calc_i_start(av);
-	ls_head = ls;
-	while (av[i])
-	{
-		ls = ls_head;
-		report = 1;
-		while (ls)
-		{
-			if (!ft_strcmp(ls->name, av[i]) || av[i][0] == '/')
-				report = 0;
-			ls = ls->next;
-		}
-		if (report)
-			nofile_err(av[i]);
-		i++;
-	}
-}
-
-void	ls_argv_filter(t_ls **ls, char **av)
-{
-	t_ls	*ls_iter;
-	int		i_start;
-	int		i;
-
-	i_start = calc_i_start(av);
-	ascii_sort(ls, 1);
-	ls_iter = *ls;
-	while (ls_iter)
-	{
-		ls_iter->print = 0;
-		i = i_start;
-		while (av[i])
-		{
-			if (!ft_strcmp(ls_iter->name, av[i]))
-				ls_iter->print = 1;
-			i++;
-		}
-		ls_iter = ls_iter->next;
-	}
-}
-
-void	print_customdirs(char **av, t_flags *flag)
-{
-	int	i;
-
-	i = calc_i_start(av);
-	while (av[i])
-	{
-		if (av[i][0] == '/')
-			ls_dir(av[i], flag, 1);
-		i++;
-	}
-}
 
 void	ls_custom(char **av, int i, t_flags *flag)
 {
