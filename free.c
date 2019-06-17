@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create.c                                           :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 17:07:07 by cdenys-a         ###   ########.fr       */
+/*   Created: 2019/06/17 17:17:03 by cdenys-a          #+#    #+#             */
+/*   Updated: 2019/06/17 17:18:07 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_flags		create_flag(void)
+void	ls_free_l(t_ls *l)
 {
-	t_flags	flag;
-
-	{
-		flag.l = 0;
-		flag.a = 0;
-		flag.r = 0;
-		flag.R = 0;
-		flag.t = 0;
-		flag.outside_flist = 0;
-		flag.indt_custom = 0;
-	}
-	return (flag);
+	free(l->path);
+	free(l->name);
+	free(l->m_time);
+	free(l->month);
+	free(l->day);
+	free(l->time);
+	free(l->user_name);
+	free(l->group_name);
+	free(l->size);
+	free(l->link);
+	free(l->data);
+	if (l->access.chmod_access)
+		free(l->access.chmod_access);
+	free(l);
 }
 
-t_ls		*add_list(t_ls *last)
+void	ls_free(t_ls *l)
 {
 	t_ls	*tmp;
-	t_ls	*new;
-
-	tmp = last;
-	new = (t_ls *)malloc(sizeof(t_ls));
-	ft_bzero(new, sizeof(t_ls));
-	if (tmp == NULL)
-		return (new);
-	else
+	
+	while(l)
 	{
-		tmp->next = new;
-		new->next = NULL;
+		tmp = l->next;
+		ls_free_l(l);
+		l = tmp;
 	}
-	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 16:46:27 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:03:27 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int		main(int argc, char **argv)
 	if (i != argc)
 		flag.outside_flist = 1;
 	flag.outside_flist ? ls_custom(argv, i, &flag) : ls_dir(".", &flag, 0);
-	pause();
+	// pause();
 	return (0);
 }

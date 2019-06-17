@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 16:30:04 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 17:31:16 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	print_ls_info(t_ls *ls, int *len, char *buf)
 		print_w_indent(ls->name, (len[7] * -1));
 }
 
-void	print_ls_l(t_ls *ls, int blocks)
+void	print_ls_l(t_ls *ls, int blocks, t_flags *f)
 {
 	int		*len;
 	char	buf[225];
@@ -113,6 +113,7 @@ void	print_ls_l(t_ls *ls, int blocks)
 	{
 		if (ls->print)
 		{
+			f->indt_custom = 1;
 			print_ls_info(ls, len, buf);
 			write(1, "\n", 1);
 		}
@@ -125,18 +126,20 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	if (dir_name)
 	{
-		write(1, "\n", 1);
+		if (flag->indt_custom)
+			write(1, "\n", 1);
 		ft_putstr(dir_name);
 		write(1, ":\n", 2);
 	}
 	if (flag->l)
-		print_ls_l(ls, blocks);
+		print_ls_l(ls, blocks, flag);
 	else
 	{
 		while (ls)
 		{
 			if (ls->print)
 			{
+				flag->indt_custom = 1;
 				ft_putstr(ls->name);
 				write(1, "   ", 3);
 			}
