@@ -6,26 +6,23 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/14 18:32:01 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 16:42:16 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_flags		*create_flag(void)
+t_flags		create_flag(void)
 {
-	t_flags	*flag;
+	t_flags	flag;
 
-	flag = NULL;
 	{
-		if (!(flag = (t_flags *)malloc(sizeof(t_flags))))
-			return (NULL);
-		flag->l = 0;
-		flag->a = 0;
-		flag->r = 0;
-		flag->R = 0;
-		flag->t = 0;
-		flag->outside_flist = 0;
+		flag.l = 0;
+		flag.a = 0;
+		flag.r = 0;
+		flag.R = 0;
+		flag.t = 0;
+		flag.outside_flist = 0;
 	}
 	return (flag);
 }

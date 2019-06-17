@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 15:03:28 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 15:23:10 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int					all_info(t_ls *ls, t_flags *flag);
 int					take_rights(t_ls *ls, struct stat buf);
 char				*take_chmod(char *access, int num);
 void				user_info(t_ls *ls);
-t_flags				*create_flag();
+t_flags				create_flag();
 t_ls				*add_list(t_ls *head);
 t_ls				*sort_list(t_ls *ls, t_flags *flag);
 t_ls				*rm_dotf(t_ls *ls);

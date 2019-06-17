@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 15:23:54 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 16:30:04 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	print_ls_l(t_ls *ls, int blocks)
 		}
 		ls = ls->next;
 	}
+	free(len);
 }
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)

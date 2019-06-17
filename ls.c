@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 15:03:54 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 16:39:25 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,40 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	}
 }
 
+void	ls_free_l(t_ls *l)
+{
+	free(l->path);
+	free(l->name);
+	free(l->m_time);
+	free(l->month);
+	free(l->day);
+	free(l->time);
+	free(l->user_name);
+	free(l->group_name);
+	free(l->size);
+	free(l->link);
+	free(l->data);
+	if (l->access.chmod_access)
+		free(l->access.chmod_access);
+	free(l);
+}
+
+void	ls_free(t_ls *l)
+{
+	t_ls	*tmp;
+	
+	while(l)
+	{
+		tmp = l->next;
+		ls_free_l(l);
+		l = tmp;
+	}
+}
+
 void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 {
 	t_ls		*ls;
+	t_ls		*head;
 	int			blocks;
 
 	ls = parse_direct(name);
@@ -143,6 +174,7 @@ void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 
 	ls = sort_list(ls, flag);
 	print_ls(ls, flag, blocks, name_n_indent ? name : 0);
+	head = ls;
 	/* if (av)
 		print_customdirs(av, flag); */
 	if (flag->R)
@@ -153,4 +185,5 @@ void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 				ls_dir(ls->path, flag, 1);
 			ls = ls->next;
 		}
+	ls_free(head);
 }

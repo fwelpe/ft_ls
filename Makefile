@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
+#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/17 15:00:53 by thaley           ###   ########.fr        #
+#    Updated: 2019/06/17 16:40:27 by cdenys-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,3 +49,6 @@ tests:
 	ls -Ralrt > test/ls.txt
 	./ft_ls -Ralrt > test/ft_ls.txt
 	diff test/ls.txt test/ft_ls.txt
+
+v: all
+	valgrind --leak-check=full -v ./ft_ls -Ralrt
