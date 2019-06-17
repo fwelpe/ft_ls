@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/14 19:21:53 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 15:23:54 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,27 @@ void	print_w_indent(char *s, int indt)
 
 int		*max_len(t_ls *ls, int *max_len)
 {
+	int		len;
+
 	while (ls)
 	{
 		if (ls->print)
 		{
-			if (max_len[0] < ft_strlen(ls->link))
+			if (max_len[0] < (len = ft_strlen(ls->link)))
 				max_len[0] = ft_strlen(ls->link);
-			if (max_len[1] < ft_strlen(ls->user_name))
+			if (max_len[1] < (len = ft_strlen(ls->user_name)))
 				max_len[1] = ft_strlen(ls->user_name);
-			if (max_len[2] < ft_strlen(ls->group_name))
+			if (max_len[2] < (len = ft_strlen(ls->group_name)))
 				max_len[2] = ft_strlen(ls->group_name);
-			if (max_len[3] < ft_strlen(ls->size))
+			if (max_len[3] < (len = ft_strlen(ls->size)))
 				max_len[3] = ft_strlen(ls->size);
-			if (max_len[4] < ft_strlen(ls->month))
+			if (max_len[4] < (len = ft_strlen(ls->month)))
 				max_len[4] = ft_strlen(ls->month);
-			if (max_len[5] < ft_strlen(ls->day))
+			if (max_len[5] < (len = ft_strlen(ls->day)))
 				max_len[5] = ft_strlen(ls->day);
-			if (max_len[6] < ft_strlen(ls->time))
+			if (max_len[6] < (len = ft_strlen(ls->time)))
 				max_len[6] = ft_strlen(ls->time);
-			if (max_len[7] < ft_strlen(ls->name))
+			if (max_len[7] < (len = ft_strlen(ls->name)))
 				max_len[7] = ft_strlen(ls->name);
 		}
 		ls = ls->next;
