@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 18:18:24 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:56:24 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 # define FT_LS_H
 
 # include "libft/libft.h"
-# include <unistd.h> //write | readlink
-# include <dirent.h> //opendir | readdir | closedir
-# include <sys/types.h> // structs
-# include <sys/dir.h> //struct dirent
-# include <sys/stat.h> //stat | lstat
-# include <grp.h> //getgrgid
-# include <uuid/uuid.h> //getgrgid | getpwuid
-# include <sys/xattr.h> //listxattr | getxattr
-# include <time.h> //time | ctime
-# include <stdlib.h> //malloc | free | exit
-# include <stdio.h> //perror | strerror
-# include <pwd.h> 
-typedef struct 		s_access
+# include <unistd.h>
+# include <dirent.h>
+# include <sys/types.h>
+# include <sys/dir.h>
+# include <sys/stat.h>
+# include <grp.h>
+# include <uuid/uuid.h>
+# include <sys/xattr.h>
+# include <time.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <pwd.h>
+
+typedef struct		s_access
 {
 	char			*chmod_access;
 	char			*user;
@@ -34,7 +35,6 @@ typedef struct 		s_access
 	char			*other;
 	char			*type;
 }					t_access;
-
 
 typedef struct		s_ls
 {
@@ -65,7 +65,7 @@ typedef struct		s_flags
 	int				l;
 	int				a;
 	int				r;
-	int				R;
+	int				recursive;
 	int				t;
 	int				outside_flist;
 	int				indt_custom;
@@ -75,7 +75,8 @@ typedef struct		s_flags
 int					parse_validate_flags(t_flags *flag, char *arg);
 void				ls(char **arg, t_flags *flag, int i);
 t_ls				*parse_direct(char *direct);
-t_ls				*parse_direct_aux(DIR *dir, char *direct);
+t_ls				*parse_direct_aux(DIR *dir, char *direct,
+					struct dirent *file, t_ls *ls);
 int					all_info(t_ls *ls, t_flags *flag);
 int					take_rights(t_ls *ls, struct stat buf);
 char				*take_chmod(char *access, int num);

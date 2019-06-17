@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 15:01:52 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:35:42 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void			write_info(struct stat sb1, struct stat sb2, t_ls *ls)
 	split_time(ls);
 	ls->uid = sb2.st_uid;
 	ls->gid = sb2.st_gid;
-	
 }
 
 int				all_info(t_ls *ls, t_flags *flag)

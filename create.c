@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 18:08:42 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:29:48 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,14 @@ t_flags		create_flag(void)
 {
 	t_flags	flag;
 
-	{
-		flag.l = 0;
-		flag.a = 0;
-		flag.r = 0;
-		flag.R = 0;
-		flag.t = 0;
-		flag.outside_flist = 0;
-		flag.indt_custom = 0;
-		flag.onedir = 0;
-	}
+	flag.l = 0;
+	flag.a = 0;
+	flag.r = 0;
+	flag.R = 0;
+	flag.t = 0;
+	flag.outside_flist = 0;
+	flag.indt_custom = 0;
+	flag.onedir = 0;
 	return (flag);
 }
 

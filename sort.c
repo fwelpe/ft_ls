@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 18:19:29 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:55:50 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void		ascii_sort(t_ls **ls_head, int order)
 		else
 		{
 			next = head;
-			while (next->next != NULL && ft_strcmp(curr->name, next->next->name) * order > 0)
+			while (next->next != NULL && ft_strcmp(curr->name,
+			next->next->name) * order > 0)
 				next = next->next;
 			curr->next = next->next;
 			next->next = curr;
@@ -56,38 +57,6 @@ void		ascii_sort(t_ls **ls_head, int order)
 	}
 	*ls_head = head;
 }
-
-// void		time_sort(t_ls **ls_head, int order)
-// {
-// 	t_ls	*head;
-// 	t_ls	*curr;
-// 	t_ls	*tmp;
-// 	int		check;
-
-// 	head = NULL;
-// 	check = 0;
-// 	while (*ls_head)
-// 	{
-// 		curr = *ls_head;
-// 		*ls_head = (*ls_head)->next;
-// 		if (head == NULL || (curr->unix_time - head->unix_time) * order > 0)
-// 		{
-// 			curr->next = head;
-// 			head = curr;
-// 		}
-// 		else
-// 		{
-// 			tmp = head;
-// 			while (tmp->next != NULL && ((curr->unix_time - tmp->next->unix_time) * order < 0 || (tmp->unix_time - tmp->next->unix_time) * order == 0))
-// 			{
-// 				tmp = tmp->next;
-// 			}
-// 			curr->next = tmp->next;
-// 			tmp->next = curr;
-// 		}
-// 	}
-// 	*ls_head = head;
-// }
 
 void		time_sort(t_ls **ls_head, int order)
 {

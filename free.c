@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 17:17:03 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 17:18:07 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:30:26 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ls_free_l(t_ls *l)
 void	ls_free(t_ls *l)
 {
 	t_ls	*tmp;
-	
-	while(l)
+
+	while (l)
 	{
 		tmp = l->next;
 		ls_free_l(l);

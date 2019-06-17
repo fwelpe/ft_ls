@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_direct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 17:25:17 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 18:18:01 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 19:48:27 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int				is_onlyonedir(int ac, char **av, int i)
 {
 	DIR				*dir;
-	
+
 	if (i + 1 == ac && (dir = opendir(av[i])))
 	{
 		closedir(dir);
@@ -28,28 +28,26 @@ t_ls			*parse_direct(char *direct)
 {
 	t_ls			*ls;
 	DIR				*dir;
+	struct dirent	*file;
 
 	ls = NULL;
+	file = NULL;
 	if (!(dir = opendir(direct)))
-	{
-		return (0);			//TODO: вывод ошибки
-	}
-	ls = parse_direct_aux(dir, direct);
+		return (0);
+	ls = parse_direct_aux(dir, direct, file, ls);
 	closedir(dir);
 	dir = NULL;
 	return (ls);
 }
 
-t_ls			*parse_direct_aux(DIR *dir, char *direct)
+t_ls			*parse_direct_aux(DIR *dir, char *direct,
+				struct dirent *file, t_ls *ls)
 {
-	struct dirent	*file;
-	t_ls			*ls;
 	t_ls			*head;
 	char			*dir_path;
 
 	ls = add_list(NULL);
 	dir_path = take_path(direct);
-	file = NULL;
 	head = ls;
 	while ((file = readdir(dir)) != NULL)
 	{
