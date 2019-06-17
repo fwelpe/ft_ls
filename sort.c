@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:39:07 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/12 17:10:10 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 18:19:29 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,63 @@ t_ls		*sort_list(t_ls *ls, t_flags *flag)
 
 void		ascii_sort(t_ls **ls_head, int order)
 {
-	t_ls	*prev;
+	t_ls	*head;
 	t_ls	*curr;
 	t_ls	*next;
 
-	prev = NULL;
-	curr = *ls_head;
-	while (curr)
+	head = NULL;
+	while (*ls_head)
 	{
-		next = curr->next;
-		if (next && ft_strcmp(curr->name, next->name) * order > 0)
+		curr = *ls_head;
+		*ls_head = (*ls_head)->next;
+		if (head == NULL || ft_strcmp(curr->name, head->name) * order < 0)
 		{
-			if (prev)
-				prev->next = next;
-			if (curr == *ls_head)
-				*ls_head = next;
-			curr->next = next->next;
-			next->next = curr;
-			curr = *ls_head;
+			curr->next = head;
+			head = curr;
 		}
 		else
 		{
-			prev = curr;
-			curr = curr->next;
+			next = head;
+			while (next->next != NULL && ft_strcmp(curr->name, next->next->name) * order > 0)
+				next = next->next;
+			curr->next = next->next;
+			next->next = curr;
 		}
 	}
+	*ls_head = head;
 }
+
+// void		time_sort(t_ls **ls_head, int order)
+// {
+// 	t_ls	*head;
+// 	t_ls	*curr;
+// 	t_ls	*tmp;
+// 	int		check;
+
+// 	head = NULL;
+// 	check = 0;
+// 	while (*ls_head)
+// 	{
+// 		curr = *ls_head;
+// 		*ls_head = (*ls_head)->next;
+// 		if (head == NULL || (curr->unix_time - head->unix_time) * order > 0)
+// 		{
+// 			curr->next = head;
+// 			head = curr;
+// 		}
+// 		else
+// 		{
+// 			tmp = head;
+// 			while (tmp->next != NULL && ((curr->unix_time - tmp->next->unix_time) * order < 0 || (tmp->unix_time - tmp->next->unix_time) * order == 0))
+// 			{
+// 				tmp = tmp->next;
+// 			}
+// 			curr->next = tmp->next;
+// 			tmp->next = curr;
+// 		}
+// 	}
+// 	*ls_head = head;
+// }
 
 void		time_sort(t_ls **ls_head, int order)
 {
