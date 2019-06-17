@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 20:22:21 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 20:49:35 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,14 +125,13 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	if (dir_name)
 	{
-		if (flag->indt_custom)
-			write(1, "\n", 1);
+		flag->indt_custom != 0 ? write(1, "\n", 1) : 0;
 		ft_putstr(dir_name);
 		write(1, ":\n", 2);
 	}
 	if (flag->l)
 		print_ls_l(ls, blocks, flag);
-	else
+	else if (ls && ls->name)
 	{
 		while (ls)
 		{
@@ -140,7 +139,8 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 			{
 				flag->indt_custom = 1;
 				ft_putstr(ls->name);
-				flag->one_opt && ls->next ? write(1, "\n", 1) : write(1, "   ", 3);
+				flag->one_opt && ls->next ? write(1, "\n", 1) :
+				write(1, "   ", 3);
 			}
 			ls = ls->next;
 		}
