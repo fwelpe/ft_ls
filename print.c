@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 19:58:01 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 19:59:26 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	print_ls_info(t_ls *ls, int *len, char *buf)
 		ft_putstr(buf);
 	}
 	else
-		print_w_indent(ls->name, (len[7] * -1));
+		print_w_indent(ls->name, 0);
 }
 
 void	print_ls_l(t_ls *ls, int blocks, t_flags *f)
