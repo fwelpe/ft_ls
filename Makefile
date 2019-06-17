@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+         #
+#    By: thaley <thaley@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/05 17:28:26 by thaley            #+#    #+#              #
-#    Updated: 2019/06/13 12:51:01 by cdenys-a         ###   ########.fr        #
+#    Updated: 2019/06/17 15:00:53 by thaley           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 OBJ_DIR = objects/
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRC = $(wildcard *.c)
 

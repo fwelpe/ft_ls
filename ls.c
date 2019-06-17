@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/14 19:34:09 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 15:03:54 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ls_argv_filter(t_ls **ls, char **av)
 	t_ls	*ls_iter;
 	int		i_start;
 	int		i;
-	int		exist;
 
 	i_start = calc_i_start(av);
 	ascii_sort(ls, 1);
@@ -88,11 +87,6 @@ void	print_customdirs(char **av, t_flags *flag)
 			ls_dir(av[i], flag, 1);
 		i++;
 	}
-}
-
-void	add_custom(t_ls *ls, char **av, int i)
-{
-
 }
 
 void	ls_custom(char **av, int i, t_flags *flag)
@@ -143,17 +137,10 @@ void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 {
 	t_ls		*ls;
 	int			blocks;
-	int			i;
 
-	ls = parse_direct(name, flag);
+	ls = parse_direct(name);
 	blocks = all_info(ls, flag);
-	/* if (av)
-	{
-		i = calc_i_start(av);
-		report_nonexist(ls, av);
-		ls_argv_filter(&ls, av);
-		add_custom(ls, av, i);
-	} */
+
 	ls = sort_list(ls, flag);
 	print_ls(ls, flag, blocks, name_n_indent ? name : 0);
 	/* if (av)

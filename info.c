@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/13 18:58:05 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/17 15:01:52 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 char			*take_path(char *direct)
 {
 	char	*new;
-	int		check;
 
 	if (direct[(ft_strlen(direct)) - 1] == '/')
 		new = ft_strdup(direct);
