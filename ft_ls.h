@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 10:50:22 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:59:44 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct		s_flags
 	int				indt_custom;
 	int				onedir;
 	int				one_opt;
+	int				first;
 }					t_flags;
 
 int					parse_validate_flags(t_flags *flag, char **av);

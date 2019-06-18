@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 11:52:30 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:34:10 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,14 +134,18 @@ int		check_for_noprint(t_ls *ls)
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
+	int	files_to_print;
+
+	files_to_print = check_for_noprint(ls);
+	if ((files_to_print || dir_name) && !flag->first)
+		write(1, "\n", 1);
 	if (dir_name)
 	{
-		if (flag->indt_custom)
-			write(1, "\n", 1);
 		ft_putstr(dir_name);
 		write(1, ":\n", 2);
+		flag->first = 0;
 	}
-	if (!check_for_noprint(ls))
+	if (!files_to_print)
 		return (0);
 	if (flag->l)
 		print_ls_l(ls, blocks, flag);
@@ -151,7 +155,6 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 		{
 			if (ls->print)
 			{
-				flag->indt_custom = 1;
 				ft_putstr(ls->name);
 				if (ls->next)
 					flag->one_opt ? write(1, "\n", 1) : write(1, "   ", 3);
@@ -160,5 +163,6 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 		}
 		write(1, "\n", 1);
 	}
+	flag->first = 0;
 	return (0);
 }

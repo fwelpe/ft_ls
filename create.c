@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:47:14 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 20:19:19 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:59:20 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_flags		create_flag(void)
 	flag.indt_custom = 0;
 	flag.onedir = 0;
 	flag.one_opt = 0;
+	flag.first = 1;
 	return (flag);
 }
 
