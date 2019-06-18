@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 20:45:43 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/17 20:35:43 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	print_ls(head, flag, -1, 0);
 	while (head)
 	{
-		if (head->type == 4 && head->print)
+		if (head->type == 4)
 			ls_dir(head->name, flag, flag->onedir ? 0 : 1);
 		head = head->next;
 	}
