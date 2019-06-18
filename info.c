@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   info.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 20:31:01 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 13:20:19 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ char			*take_path(char *direct)
 
 void			split_time(t_ls *ls)
 {
-	time_t		six;
+	time_t		older_half_y;
+	time_t		newer_half_y;
 
-	six = time(NULL);
-	six = six - 13046400;
+	older_half_y = time(NULL);
+	newer_half_y = time(NULL) + 0.5;
+	older_half_y = older_half_y - 15778458;
 	ls->month = ft_strsub(ls->m_time, 4, 3);
 	ls->day = ft_strsub(ls->m_time, 8, 2);
-	if (ls->unix_time <= six)
+	if (ls->unix_time <= older_half_y || ls->unix_time >= newer_half_y)
 		ls->time = ft_strsub(ls->m_time, 20, 4);
 	else
 		ls->time = ft_strsub(ls->m_time, 11, 5);
