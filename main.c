@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 16:43:42 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:22:04 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		parse_validate_flags(t_flags *flag, char **av)
 	int		j;
 
 	i = 1;
-	while (av[i] && av[i][0] == '-')
+	while (av[i] && av[i][0] == '-' && av[i][1])
 	{
 		j = 1;
 		while (av[i][j])

@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/18 16:56:15 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:42:46 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 		if (stat(av[i], &buf1) == -1)
 		{
 			ft_putstr_fd("ft_ls: ", 2);
-			perror(av[i]);
+			perror(!ft_strcmp(av[i], "") ? "fts_open" : av[i]);
 		}
 		else
 			ls = take_name_path_type(ls, av[i], buf1);
