@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/17 20:22:21 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 11:52:30 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,17 @@ void	print_ls_l(t_ls *ls, int blocks, t_flags *f)
 	free(len);
 }
 
+int		check_for_noprint(t_ls *ls)
+{
+	while (ls)
+	{
+		if (ls->print)
+			return (1);
+		ls = ls->next;
+	}
+	return (0);
+}
+
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	if (dir_name)
@@ -130,6 +141,8 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 		ft_putstr(dir_name);
 		write(1, ":\n", 2);
 	}
+	if (!check_for_noprint(ls))
+		return (0);
 	if (flag->l)
 		print_ls_l(ls, blocks, flag);
 	else
@@ -140,7 +153,8 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 			{
 				flag->indt_custom = 1;
 				ft_putstr(ls->name);
-				flag->one_opt && ls->next ? write(1, "\n", 1) : write(1, "   ", 3);
+				if (ls->next)
+					flag->one_opt ? write(1, "\n", 1) : write(1, "   ", 3);
 			}
 			ls = ls->next;
 		}
