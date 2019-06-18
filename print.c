@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 14:39:40 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/18 15:49:51 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	print_ls_info(t_ls *ls, int *len, char *buf)
 	print_w_indent(ls->user_name, (len[1] + 2) * -1);
 	print_w_indent(ls->group_name, (len[2] + 2) * -1);
 	print_w_indent(ls->size, len[3]);
+	print_w_indent(ls->month, len[4] + 1);
 	write(1, " ", 1);
 	print_w_indent(ls->day, len[5]);
-	print_w_indent(ls->month, len[4] + 1);
 	write(1, " ", 1);
 	print_w_indent(ls->time, len[6]);
 	write(1, " ", 1);
@@ -132,6 +132,17 @@ int		check_for_noprint(t_ls *ls)
 	return (0);
 }
 
+int		is_last(t_ls *ls)
+{
+	while (ls)
+	{
+		ls = ls->next;
+		if (ls && ls->print)
+			return (0);
+	}
+	return (1);
+}
+
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	int	files_to_print;
@@ -156,7 +167,7 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 			if (ls->print)
 			{
 				ft_putstr(ls->name);
-				if (ls->next)
+				if (!is_last(ls))
 					flag->one_opt ? write(1, "\n", 1) : write(1, "   ", 3);
 			}
 			ls = ls->next;
