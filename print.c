@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 14:34:10 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 14:39:40 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	print_ls_info(t_ls *ls, int *len, char *buf)
 	print_w_indent(ls->user_name, (len[1] + 2) * -1);
 	print_w_indent(ls->group_name, (len[2] + 2) * -1);
 	print_w_indent(ls->size, len[3]);
-	print_w_indent(ls->month, len[4] + 1);
 	write(1, " ", 1);
 	print_w_indent(ls->day, len[5]);
+	print_w_indent(ls->month, len[4] + 1);
 	write(1, " ", 1);
 	print_w_indent(ls->time, len[6]);
 	write(1, " ", 1);
