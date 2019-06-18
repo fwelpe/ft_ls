@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 15:49:51 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 17:06:45 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,24 @@ int		is_last(t_ls *ls)
 	return (1);
 }
 
+int    opening_check(char *name)
+{
+    DIR	*dir;
+
+	if (!name)
+		return (1);
+	if (!(dir = opendir(name)))
+	{
+		ft_putstr_fd("ft_ls: ", 2);
+		ft_putstr_fd(name, 2);
+		ft_putendl_fd(": Permission denied", 2);
+		return (0);
+	}
+	closedir(dir);
+	return (1);
+}
+
+
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {
 	int	files_to_print;
@@ -156,7 +174,7 @@ int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 		write(1, ":\n", 2);
 		flag->first = 0;
 	}
-	if (!files_to_print)
+	if (!opening_check(dir_name) || !files_to_print)
 		return (0);
 	if (flag->l)
 		print_ls_l(ls, blocks, flag);

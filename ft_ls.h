@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 13:59:44 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 16:47:25 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,7 @@ void				ls_custom(char **av, int i, t_flags *flag);
 void				ls_free_l(t_ls *l);
 void				ls_free(t_ls *l);
 int					is_onlyonedir(int ac, char **av, int i);
+void				illegal_opt_err(char opt);
+void				permission_denied_err(char *name);
 
 #endif
