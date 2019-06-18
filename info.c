@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 13:20:19 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/18 17:07:27 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,13 @@ void			split_time(t_ls *ls)
 	time_t		newer_half_y;
 
 	older_half_y = time(NULL);
-	newer_half_y = time(NULL) + 0.5;
-	older_half_y = older_half_y - 15778458;
+	newer_half_y = time(NULL) + 1;
+	older_half_y = older_half_y - 18144000;
 	ls->month = ft_strsub(ls->m_time, 4, 3);
 	ls->day = ft_strsub(ls->m_time, 8, 2);
-	if (ls->unix_time <= older_half_y || ls->unix_time >= newer_half_y)
+	if (ls->unix_time >= newer_half_y && ft_strlen(ls->m_time) > 25)
+		ls->time = ft_strsub(ls->m_time, (ft_strlen(ls->m_time) - 7), 6);
+	else if (ls->unix_time <= older_half_y || ls->unix_time >= newer_half_y)
 		ls->time = ft_strsub(ls->m_time, 20, 4);
 	else
 		ls->time = ft_strsub(ls->m_time, 11, 5);
