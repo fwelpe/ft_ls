@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 17:07:27 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/18 18:20:36 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			split_time(t_ls *ls)
 		ls->time = ft_strsub(ls->m_time, 11, 5);
 }
 
-void			write_info(struct stat sb1, struct stat sb2, t_ls *ls)
+void			write_info(struct stat sb1, t_ls *ls)
 {
 	take_rights(ls, sb1);
 	ls->block = sb1.st_blocks;
@@ -54,8 +54,8 @@ void			write_info(struct stat sb1, struct stat sb2, t_ls *ls)
 	ls->unix_time = sb1.st_mtime;
 	ls->m_time = ft_strdup(ctime(&sb1.st_mtime));
 	split_time(ls);
-	ls->uid = sb2.st_uid;
-	ls->gid = sb2.st_gid;
+	ls->uid = sb1.st_uid;
+	ls->gid = sb1.st_gid;
 }
 
 int				all_info(t_ls *ls, t_flags *flag)
@@ -73,7 +73,7 @@ int				all_info(t_ls *ls, t_flags *flag)
 			ls->print = 0;
 		else
 		{
-			write_info(sb1, sb2, ls);
+			write_info(sb1, ls);
 			blocks = blocks + ls->block;
 		}
 		ls = ls->next;

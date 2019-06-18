@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ls.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/18 17:42:46 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 19:03:38 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf1)
+t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf2, t_flags *flag)
 {
+	struct stat		buf1;
+
+	stat(av, &buf1);
 	if (ls->name)
 	{
 		ls->next = add_list(ls);
@@ -21,16 +24,18 @@ t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf1)
 	}
 	ls->path = av;
 	ls->name = av;
-	S_ISLNK(buf1.st_mode) ? ls->type = 10 : 0;
-	S_ISDIR(buf1.st_mode) ? ls->type = 4 : 0;
-	S_ISREG(buf1.st_mode) ? ls->type = 8 : 0;
-	ls->print = (ls->type == 8 || ls->type == 10) ? 1 : 0;
+	S_ISLNK(buf2.st_mode) ? ls->type = 10 : 0;
+	S_ISDIR(buf2.st_mode) ? ls->type = 4 : 0;
+	S_ISREG(buf2.st_mode) ? ls->type = 8 : 0;
+	if (ls->type == 10 && (S_ISDIR(buf1.st_mode)))
+		ls->type = 14;
+	ls->print = (ls->type == 8 || ls->type == 10 || (ls->type == 14 && flag->l)) ? 1 : 0;
 	return (ls);
 }
 
 void	ls_custom(char **av, int i, t_flags *flag)
 {
-	struct stat buf1;
+	struct stat buf2;
 	t_ls		*ls;
 	t_ls		*head;
 
@@ -38,13 +43,13 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	head = ls;
 	while (av[i])
 	{
-		if (stat(av[i], &buf1) == -1)
+		if ((lstat(av[i], &buf2)) == -1)
 		{
 			ft_putstr_fd("ft_ls: ", 2);
 			perror(!ft_strcmp(av[i], "") ? "fts_open" : av[i]);
 		}
 		else
-			ls = take_name_path_type(ls, av[i], buf1);
+			ls = take_name_path_type(ls, av[i], buf2, flag);
 		i++;
 	}
 	all_info(head, flag);
@@ -52,7 +57,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	print_ls(head, flag, -1, 0);
 	while (head)
 	{
-		if (head->type == 4)
+		if (head->type == 4 || (head->type == 14 && !flag->l))
 			ls_dir(head->name, flag, flag->onedir ? 0 : 1);
 		head = head->next;
 	}

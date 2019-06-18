@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 17:06:45 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 19:19:23 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_ls_info(t_ls *ls, int *len, char *buf)
 	write(1, " ", 1);
 	print_w_indent(ls->time, len[6]);
 	write(1, " ", 1);
-	if (ls->type == 10)
+	if (ls->type == 10 || ls->type == 14)
 	{
 		print_w_indent(ls->name, ft_strlen(ls->name));
 		buf[readlink(ls->path, buf, 100)] = '\0';

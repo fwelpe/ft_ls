@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 16:47:25 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 20:29:03 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_ls				*parse_direct_aux(DIR *dir, char *direct,
 					struct dirent *file, t_ls *ls);
 int					all_info(t_ls *ls, t_flags *flag);
 int					take_rights(t_ls *ls, struct stat buf);
-char				*take_chmod(char *access, int num);
+char				*take_chmod(char *access, int num, char *type);
 void				user_info(t_ls *ls);
 t_flags				create_flag();
 t_ls				*add_list(t_ls *head);
