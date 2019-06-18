@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 20:35:43 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/18 16:56:15 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 	t_ls		*head;
 	int			blocks;
 
+	/* if (!(ls = parse_direct(name)))
+		return (permission_denied_err(name)); */
 	ls = parse_direct(name);
 	blocks = all_info(ls, flag);
 	ls = sort_list(ls, flag);
