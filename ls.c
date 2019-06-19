@@ -6,13 +6,14 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/19 16:24:02 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/19 17:06:28 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf2, t_flags *flag)
+t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf2,
+t_flags *flag)
 {
 	struct stat		buf1;
 
@@ -29,7 +30,8 @@ t_ls	*take_name_path_type(t_ls *ls, char *av, struct stat buf2, t_flags *flag)
 	S_ISREG(buf2.st_mode) ? ls->type = 8 : 0;
 	if (ls->type == 10 && (S_ISDIR(buf1.st_mode)))
 		ls->type = 14;
-	ls->print = (ls->type == 8 || ls->type == 10 || (ls->type == 14 && flag->l)) ? 1 : 0;
+	ls->print = (ls->type == 8 || ls->type == 10 ||
+	(ls->type == 14 && flag->l)) ? 1 : 0;
 	return (ls);
 }
 
@@ -44,10 +46,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 	while (av[i])
 	{
 		if ((lstat(av[i], &buf2)) == -1)
-		{
-			ft_putstr_fd("ft_ls: ", 2);
-			perror(av[i]);
-		}
+			perroring(av[i]);
 		else
 			ls = take_name_path_type(ls, av[i], buf2, flag);
 		i++;

@@ -6,41 +6,48 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 14:01:27 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 17:22:04 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/19 17:01:04 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+int		parse_validate_flag(int *j, char f, t_flags *flag, char avijplus1)
+{
+	if (f == 'R')
+		flag->recursive = 1;
+	else if (f == 'a')
+		flag->a = 1;
+	else if (f == 'l')
+		flag->l = 1;
+	else if (f == 'r')
+		flag->r = 1;
+	else if (f == 't')
+		flag->t = 1;
+	else if (f == '1')
+		flag->one_opt = 1;
+	else if (f == '-' && !avijplus1)
+		return (1);
+	else
+		illegal_opt_err(f);
+	*j += 1;
+	return (0);
+}
+
 int		parse_validate_flags(t_flags *flag, char **av)
 {
 	int		i;
 	int		j;
+	int		ifnonzero;
 
 	i = 1;
 	while (av[i] && av[i][0] == '-' && av[i][1])
 	{
 		j = 1;
 		while (av[i][j])
-		{
-			if (av[i][j] == 'R')
-				flag->recursive = 1;
-			else if (av[i][j] == 'a')
-				flag->a = 1;
-			else if (av[i][j] == 'l')
-				flag->l = 1;
-			else if (av[i][j] == 'r')
-				flag->r = 1;
-			else if (av[i][j] == 't')
-				flag->t = 1;
-			else if (av[i][j] == '1')
-				flag->one_opt = 1;
-			else if (av[i][j] == '-' && !av[i][j + 1])
+			if ((ifnonzero = parse_validate_flag(&j, av[i][j], flag,
+			av[i][j + 1])))
 				return (i + 1);
-			else
-				illegal_opt_err(av[i][j]);
-			j++;
-		}
 		i++;
 	}
 	return (i);

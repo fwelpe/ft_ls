@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/18 16:43:28 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/19 14:42:41 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/19 17:08:05 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	illegal_opt_err(char opt)
 	exit(1);
 }
 
-int    opening_check(char *name)
+int		opening_check(char *name)
 {
-    DIR	*dir;
+	DIR	*dir;
 
 	if (!name)
 		return (1);
@@ -35,4 +35,10 @@ int    opening_check(char *name)
 	}
 	closedir(dir);
 	return (1);
+}
+
+void	perroring(char *msg)
+{
+	ft_putstr_fd("ft_ls: ", 2);
+	perror(msg);
 }

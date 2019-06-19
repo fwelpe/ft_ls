@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 17:17:03 by cdenys-a          #+#    #+#             */
-/*   Updated: 2019/06/17 19:30:26 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/19 16:46:34 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	ls_free_l(t_ls *l)
 	free(l->data);
 	if (l->access.chmod_access)
 		free(l->access.chmod_access);
+	free(l->access.user);
+	free(l->access.group);
+	free(l->access.other);
 	free(l);
 }
 
