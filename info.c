@@ -6,7 +6,7 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:14:49 by thaley            #+#    #+#             */
-/*   Updated: 2019/06/18 18:20:36 by thaley           ###   ########.fr       */
+/*   Updated: 2019/06/19 16:15:43 by thaley           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			split_time(t_ls *ls)
 	if (ls->unix_time >= newer_half_y && ft_strlen(ls->m_time) > 25)
 		ls->time = ft_strsub(ls->m_time, (ft_strlen(ls->m_time) - 7), 6);
 	else if (ls->unix_time <= older_half_y || ls->unix_time >= newer_half_y)
-		ls->time = ft_strsub(ls->m_time, 20, 4);
+		ls->time = ft_strsub(ls->m_time, 19, 5);
 	else
 		ls->time = ft_strsub(ls->m_time, 11, 5);
 }
