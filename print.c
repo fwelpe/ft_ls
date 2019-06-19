@@ -6,7 +6,11 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 15:32:28 by thaley            #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/06/18 19:19:23 by thaley           ###   ########.fr       */
+=======
+/*   Updated: 2019/06/19 14:43:30 by cdenys-a         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +146,6 @@ int		is_last(t_ls *ls)
 	}
 	return (1);
 }
-
-int    opening_check(char *name)
-{
-    DIR	*dir;
-
-	if (!name)
-		return (1);
-	if (!(dir = opendir(name)))
-	{
-		ft_putstr_fd("ft_ls: ", 2);
-		ft_putstr_fd(name, 2);
-		ft_putendl_fd(": Permission denied", 2);
-		return (0);
-	}
-	closedir(dir);
-	return (1);
-}
-
 
 int		print_ls(t_ls *ls, t_flags *flag, int blocks, char *dir_name)
 {

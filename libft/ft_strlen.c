@@ -6,7 +6,7 @@
 /*   By: cdenys-a <cdenys-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 17:28:49 by cdenys-a          #+#    #+#             */
-/*   Updated: 2018/12/01 14:52:13 by cdenys-a         ###   ########.fr       */
+/*   Updated: 2019/06/19 15:36:05 by cdenys-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 		i++;

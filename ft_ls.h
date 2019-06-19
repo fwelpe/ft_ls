@@ -6,7 +6,11 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 14:07:53 by thaley            #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/06/18 20:29:03 by thaley           ###   ########.fr       */
+=======
+/*   Updated: 2019/06/19 14:42:59 by cdenys-a         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +106,6 @@ void				ls_free(t_ls *l);
 int					is_onlyonedir(int ac, char **av, int i);
 void				illegal_opt_err(char opt);
 void				permission_denied_err(char *name);
+int					opening_check(char *name);
 
 #endif

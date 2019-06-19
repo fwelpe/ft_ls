@@ -6,7 +6,11 @@
 /*   By: thaley <thaley@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 12:51:21 by cdenys-a          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/06/18 19:03:38 by thaley           ###   ########.fr       */
+=======
+/*   Updated: 2019/06/19 14:42:12 by cdenys-a         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +50,7 @@ void	ls_custom(char **av, int i, t_flags *flag)
 		if ((lstat(av[i], &buf2)) == -1)
 		{
 			ft_putstr_fd("ft_ls: ", 2);
-			perror(!ft_strcmp(av[i], "") ? "fts_open" : av[i]);
+			perror(av[i]);
 		}
 		else
 			ls = take_name_path_type(ls, av[i], buf2, flag);
@@ -69,8 +73,6 @@ void	ls_dir(char *name, t_flags *flag, int name_n_indent)
 	t_ls		*head;
 	int			blocks;
 
-	/* if (!(ls = parse_direct(name)))
-		return (permission_denied_err(name)); */
 	ls = parse_direct(name);
 	blocks = all_info(ls, flag);
 	ls = sort_list(ls, flag);
